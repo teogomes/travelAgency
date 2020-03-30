@@ -1,0 +1,80 @@
+<ngb-alert *ngIf="showAlert" (close)="showAlert = false">
+    Added
+</ngb-alert>
+<div class='row justify-content-around bg-primary'>
+    <!-- Form for adding new travel package -->
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard">
+        <form (ngSubmit)="addNewTravelPackage()" style="margin-top:48px;">
+            <div class="form-group">
+                <label style="color: black;font-size: large;text-align: center;" for="item">Add new travel
+                    package</label>
+                <input type="title" class="form-control" placeholder="Enter title..." id="item" required
+                    [(ngModel)]="itemValue" name="item">
+                <input type="title" class="form-control" placeholder="Enter subtitle..." id="item" required
+                    [(ngModel)]="subtitleValue" name="subtitle">
+                <input type="title" class="form-control" placeholder="Enter message..." id="item" required
+                    [(ngModel)]="messageValue" name="message">
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="item" required
+                    [(ngModel)]="urlPhoto" name="urlPhoto">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <h2 style='color:black;margin-top: 24px;'>Current Travel Packages</h2>
+            <div *ngFor='let item of items | async' class="well well-sm mt-4 justify-content-between d-flex">
+                <h2 style='color:black'>{{'Title: ' + item.title + '    Subtitle: ' + item.subtitle}}</h2>
+                <button type="button" class="btn btn-danger" (click)='removeItem(item,"items")'>Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Form for adding new image to slideShow -->
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard">
+        <form (ngSubmit)="addNewSlideshowImage()" style="margin-top:48px;">
+            <div class="form-group">
+                <label style="color: black;font-size: large;" for="item">Add new slideshow image</label>
+                <input type="text" class=" form-control" placeholder="Enter photo title..." id="titlePhoto" required
+                    [(ngModel)]="titlePhoto" name="titlePhoto">
+                <input type="text" class=" form-control" placeholder="Enter link..." id="urlLink" required
+                    [(ngModel)]="urlLink" name="urlLink">
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="urlPhoto" required
+                    [(ngModel)]="urlSlideshowPhoto" name="urlPhoto">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <h2 style='color:black;margin-top: 24px;'>Current Slide show images</h2>
+            <div *ngFor='let image of slideShowImages | async' class="well well-sm mt-4 justify-content-between d-flex">
+                <img style='height:100px;width:100px' src="{{image.urlSlideshowPhoto}}">
+                <button type="button" class="btn btn-danger"
+                    (click)='removeItem(image,"slideshowImages")'>Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Form for adding new post to newsBlog -->
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard mw-45">
+        <form (ngSubmit)="addNewPost()" style="margin-top:48px;">
+            <div class="form-group">
+                <label style="color: black;font-size: large;" for="item">New post</label>
+                <input type="text" class=" form-control" placeholder="Enter a title..." id="postTitle" required
+                    [(ngModel)]="postTitle" name="postTitle">
+                <input type="text" class=" form-control" placeholder="Enter message" id="postMessage" required
+                    [(ngModel)]="postMessage" name="postMessage">
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="postPhotoUrl" required
+                    [(ngModel)]="postPhotoUrl" name="postPhotoUrl">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <h2 style='color:black;margin-top: 24px;'>Current posts</h2>
+            <div *ngFor='let post of posts | async' class="well well-sm mt-4 justify-content-around d-flex">
+                <img style='height:100px;width:100px' src="{{post.postPhotoUrl}}">
+                <h2 style='color:black'> {{'Title: ' + post.postTitle}}</h2>
+                <button type="button" class="btn btn-danger" (click)='removeItem(post,"posts")'>Delete</button>
+            </div>
+        </form>
+    </div>

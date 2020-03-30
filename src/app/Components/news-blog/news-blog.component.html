@@ -1,0 +1,9 @@
+<div class="container bg-primary w-70 float-left">
+    <div *ngFor='let post of posts | async' class="well well-sm mt-4 justify-content-start d-flex">
+        <img style='height:300px;width:250px;' src="{{post.postPhotoUrl}}">
+        <div class='postContent'>
+            <h2 style='color:black'> {{post.postTitle}}</h2>
+            <p style='color:grey'> {{post.postTitle}} </p>
+        </div>
+    </div>
+</div>

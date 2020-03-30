@@ -1,0 +1,6 @@
+.componentCard {
+    border-radius: 5px;
+    box-shadow: 7px 14px 17px -9px rgba(0,0,0,0.63);
+    max-width: 400px;
+    margin-top: 50px;
+}

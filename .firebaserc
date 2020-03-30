@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "travelagency-76dd4": {
+      "hosting": {
+        "travelagency": [
+          "travelagency-76dd4"
+        ]
+      }
+    }
+  }
+}

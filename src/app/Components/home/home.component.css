@@ -1,0 +1,26 @@
+.example-card {
+    filter: gray; /* IE5+ */
+    -webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
+    -webkit-transition: all .4s ease-in-out; 
+}
+
+.example-card:not([class*=mat-elevation-z]) {
+  box-shadow: 7px 14px 17px -9px rgba(0,0,0,0.63);
+}
+
+.example-card:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  -webkit-transform: translateY(-10px);
+}
+  
+
+.card-image {
+  height:50%;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+
