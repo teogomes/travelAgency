@@ -23,6 +23,7 @@ import { AdminPanelComponent } from './Components/admin-panel/admin-panel.compon
 import { SigninComponent } from './Components/signin/signin.component';
 import { NewsBlogComponent } from './Components/news-blog/news-blog.component';
 import { ContactComponent } from './Components/contact/contact.component';
+import { BookingComponent } from './Components/booking/booking.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ContactComponent } from './Components/contact/contact.component';
     SigninComponent,
     NewsBlogComponent,
     ContactComponent,
+    BookingComponent,
   ],
   imports: [
     NgbModule,
