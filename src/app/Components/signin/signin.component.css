@@ -40,16 +40,17 @@
     min-width: 250px;
     padding: 14px 14px 0;
     overflow:hidden;
-    background-color:rgba(255,255,255,.8);
-     right: 150px;
-     left: -150px;
+    background-color:rgba(255,255,255,1);
+    border-radius: 5px;
+    right: 150px;
+    left: -150px;
   }
 
   #login-dp .help-block{
     font-size:12px    
   }
   #login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
+    background-color:rgba(255,255,255,1);
     border-top:1px solid #ddd;
     clear:both;
     padding:14px;

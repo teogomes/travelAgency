@@ -1,3 +1,13 @@
+h1 {
+    padding: 15px;
+    padding-top: 25px;
+}
+
 .postContent {
     margin-left: 24px;
+}
+
+.cardContainer{
+    border-radius: 5px;
+    overflow: hidden;
 }

@@ -4,4 +4,71 @@
     background-size: cover;
     height: 700px;
     width: 100%;
+      /* Add the blur effect */
+}
+
+.bookingCard {
+    margin-top: 100px;  
+    min-width: 300px;
+    padding: 30px;
+     /* Shadow */
+    -webkit-box-shadow: 17px 23px 25px -14px rgba(0,0,0,0.51);
+    -moz-box-shadow: 17px 23px 25px -14px rgba(0,0,0,0.51);
+    box-shadow: 17px 23px 25px -14px rgba(0,0,0,0.51);
+}
+
+[class*="row-"] {
+   padding-bottom: 16px;
+}
+
+.subtitle {
+    color:gray;
+    margin-top: -5px;
+    margin-left: 10px;
+}
+
+.input {
+    height:35px;
+}
+
+input[readonly] {
+    background-color: white;
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.ngbDatepicker {
+    width: 100px;
+    position: absolute;
+    background-color: white;
+}
+
+.checkBoxContainer { 
+    margin-top: 20px;
+}
+
+.submitButton {
+    height:50px;
+    width: 35%;
+    background-color: #043037;
+    color:white;
+    font-size: large;
+    border-radius: 7px;
 }

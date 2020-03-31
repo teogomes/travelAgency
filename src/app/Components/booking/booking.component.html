@@ -1,3 +1,71 @@
-<div class="container-fluid w-100 bookingContainer">
-    
+<div class="container-fluid bookingContainer">
+    <div class='container w-75 h-100 float-left'>
+        <div class="card col mt-5 ml-md-5 w-50 bookingCard h-75 d-flex flex-column">
+
+            <div class='row-md-12'>
+                <h1 class='header'>Book your next trip with us</h1>
+                <h5 class='subtitle'>Travel the world with us and enjoy special perks</h5>
+            </div>
+
+            <div class='row-md-12'>
+                <label for="whereInput">
+                    <h3>Place</h3>
+                </label>
+                <input type="text" class="form-control input" id="placeInput" required [(ngModel)]="placeValue"
+                    name="placeInput">
+            </div>
+
+            <div class='row-md-12'>
+                <div class='row'>
+                    <div class='col-6'>
+                        <label for="fromInputDate">
+                            <h3>From</h3>
+                        </label>
+                        <div class="inner-addon right-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            <input (click)="fromDate.toggle()" type="text" readonly class="form-control input "
+                                id="fromInputDate" required placeholder="yyyy-mm-dd" ngbDatepicker
+                                #fromDate="ngbDatepicker" [(ngModel)]="fromInputDateValue" name="fromInputDate">
+
+                        </div>
+                    </div>
+                    <div class='col-6'>
+                        <label for="toInputDate">
+                            <h3>To</h3>
+                        </label>
+                        <div class="inner-addon right-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            <input (click)="toDate.toggle()" type="text" readonly class="form-control input "
+                                id="toInputDate" required placeholder="yyyy-mm-dd" ngbDatepicker #toDate="ngbDatepicker"
+                                [(ngModel)]="toInputDateValue" name="toInputDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row-md-12'>
+                <label for="personInput">
+                    <h3>Person</h3>
+                </label>
+                <select class="form-control h-75" id="personInput" name="personInput">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="more">More</option>
+                </select>
+            </div>
+
+            <div class='row-md-12 checkBoxContainer'>
+                <input class="form-check-input" type="checkbox" value="" id="travelForWorkInput">
+                <label class="form-check-label ml-4" for="travelForWorkInput">
+                    <h4>Travel for work</h4>
+                </label>
+            </div>
+
+            <div class='row-md-12 bottom-0 mt-auto w-100 justify-content-center d-flex'>
+                <button type='button' class="btn submitButton">Submit</button>
+            </div>
+
+        </div>
+    </div>
 </div>

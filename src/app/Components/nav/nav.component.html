@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light mb-0">
   <div class="topnav" id="myTopnav">
-    <a class="navbar-brand" href="#home">Home</a>
-    <a href="#news" routerLink="newsBlog">News</a>
-    <a href="#hotels" routerLink='hotels'>Hotels</a>
+    <a  href="#home" routerLink="home" routerLinkActive="active">Home</a>
+    <a href="#news" routerLink="newsBlog" routerLinkActive="active" >News</a>
+    <a href="#hotels" routerLink='hotels' routerLinkActive="active">Hotels</a>
     <div ngbDropdown class="dropdown">
-      <button ngbDropdownToggle class="dropbtn">Trips
+      <button ngbDropdownToggle class="dropbtn" routerLinkActive="active">Trips
         <i class="fa fa-caret-down"></i>
       </button>
       <div ngbDropdownMenu class="dropdown-content">
@@ -14,11 +14,12 @@
         <a ngbDropdownItem href="#">Daily</a>
       </div>
     </div>
-    <a href="#booking" routerLink='booking'>Booking</a>
-    <a href="#contact" routerLink='contact'>Contact</a>
-    <a routerLink="about">About</a>
-    <a *ngIf='showAdminPanel()' routerLink="adminPanel">Admin Panel</a>
-    <a href="javascript:void(0);" class="icon" (click)="myFunction()">&#9776;</a>
+    <a href="#booking" routerLink='booking' routerLinkActive="active">Booking</a>
+    <a href="#contact" routerLink='contact' routerLinkActive="active">Contact</a>
+    <a routerLink="about" routerLinkActive="active">About</a>
+    <a *ngIf='showAdminPanel()' routerLink="adminPanel" routerLinkActive="active">Admin Panel</a>
+    <a href="javascript:void(0);" class="icon" (click)="addResponsiveClass()">&#9776;</a>
+
     <app-signin *ngIf='showLogin'></app-signin>
   </div>
 </nav>

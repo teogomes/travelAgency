@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -11,7 +12,8 @@ export class NavComponent implements OnInit {
   showLogin = true
   baseUrl = 'https://google.com/'
   searchBarText = ''
-  constructor() { }
+  
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,15 +34,15 @@ export class NavComponent implements OnInit {
         "x-rapidapi-key": "a16e0a5d88msh291cdac33c53f8fp10546djsn504c1c452458"
       }
     })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  myFunction() {
+  addResponsiveClass() {
     this.showLogin = !this.showLogin
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {

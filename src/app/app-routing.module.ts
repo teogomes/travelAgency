@@ -8,7 +8,7 @@ import {ContactComponent} from './Components/contact/contact.component';
 import {BookingComponent} from './Components/booking/booking.component';
 
 const routes: Routes = [
-  {path: '', component:HomeComponent},
+  {path: 'home', component:HomeComponent},
   {path: 'newsBlog', component:NewsBlogComponent},
   {path: 'contact' , component:ContactComponent},
   {path: 'about', component:AboutComponent},
