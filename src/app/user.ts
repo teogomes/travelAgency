@@ -5,3 +5,10 @@ export interface User {
     photoURL: string;
     emailVerified: boolean;
  }
+
+ export interface BasicFirebaseData {
+      title: string;
+      message: string;
+      imageUrl: string;
+      url: string;
+ }

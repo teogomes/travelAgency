@@ -4,7 +4,7 @@ import 'firebase/database';
 import { Observable } from 'rxjs';
 
 interface SlideshowImage {
-  urlSlideshowPhoto:String,
+  imageUrl:String,
   urlLink:String,
 
 }
@@ -38,27 +38,20 @@ export class HomeComponent implements OnInit {
   width: string = '100%';
   enableZoom: boolean = false;
   enablePan: boolean = false;
-
-  ngOnInit() {
-  }
-
   items: Observable<any[]>;
   imageUrls: String[];
   slideshowImages: Observable<any[]>;
+
+  ngOnInit() {
+  }
 
   constructor(public db: AngularFireDatabase) {
     this.items = db.list('items').valueChanges();
     db.list('slideshowImages').valueChanges().subscribe((res : SlideshowImage[]) => {
       this.imageUrls = []
       res.map((image) => {
-        this.imageUrls.push(image.urlSlideshowPhoto)
+        this.imageUrls.push(image.imageUrl)
       })
     })
-
   }
-
-  myFunction() {
-    console.log(this.slideshowImages)
-  }
-
 }

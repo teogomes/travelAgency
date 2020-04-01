@@ -1,3 +1,18 @@
+
+h1 {
+  padding: 15px;
+  padding-top: 25px;
+  color: #535353;
+  font-size:45px;
+  font-weight:600;
+}
+
+span {
+  color: #AF0808; 
+  font-size:45px;
+  font-weight:700;
+}
+
 .example-card {
     filter: gray; /* IE5+ */
     -webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
@@ -11,7 +26,8 @@
 .example-card:hover {
   filter: none;
   -webkit-filter: grayscale(0);
-  -webkit-transform: translateY(-10px);
+  -webkit-transform: translateY(-15px);
+  /* -webkit-transform: scale(1.1,1.1); */
 }
   
 

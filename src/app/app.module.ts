@@ -1,5 +1,6 @@
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,9 @@ import { SigninComponent } from './Components/signin/signin.component';
 import { NewsBlogComponent } from './Components/news-blog/news-blog.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { BookingComponent } from './Components/booking/booking.component';
+import { DetailsPageComponent } from './Components/details-page/details-page.component';
+import { HotelsComponent } from './Components/hotels/hotels.component';
+import { TripsComponent } from './Components/trips/trips.component';
 
 
 @NgModule({
@@ -37,6 +41,9 @@ import { BookingComponent } from './Components/booking/booking.component';
     NewsBlogComponent,
     ContactComponent,
     BookingComponent,
+    DetailsPageComponent,
+    HotelsComponent,
+    TripsComponent,
   ],
   imports: [
     NgbModule,
@@ -51,7 +58,7 @@ import { BookingComponent } from './Components/booking/booking.component';
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

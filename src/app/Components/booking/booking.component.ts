@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
+  placeValue = '';
+  fromInputDateValue= '';
+  toInputDateValue = '';
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  findMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        debugger
+        alert(`Geolocation is not supported by this browser. ${position}`);
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   }
 
 }

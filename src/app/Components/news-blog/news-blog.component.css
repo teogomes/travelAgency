@@ -1,13 +1,24 @@
 h1 {
     padding: 15px;
     padding-top: 25px;
+    color: #535353;
+    font-size:45px;
+    font-weight:600;
+}
+
+span {
+    color: #AF0808; 
+    font-size:45px;
+    font-weight:700;
 }
 
 .postContent {
-    margin-left: 24px;
+    padding: 15px;
+    padding-top: 2px;
 }
 
 .cardContainer{
     border-radius: 5px;
     overflow: hidden;
 }
+

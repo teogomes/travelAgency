@@ -1,6 +1,25 @@
+ 
+ label {
+    color: #535353;
+    font-size:45px;
+    font-weight:600;
+}
+
+span {
+    color: #AF0808;
+    font-size:25px;
+    font-weight:600;
+}
+
 .componentCard {
     border-radius: 5px;
     box-shadow: 7px 14px 17px -9px rgba(0,0,0,0.63);
     max-width: 400px;
     margin-top: 50px;
+    -webkit-transition: all .4s ease-in-out; 
+}
+
+.componentCard:hover {
+    background-color: lightseagreen;
+    -webkit-transform: scale(1.1,1.1);
 }

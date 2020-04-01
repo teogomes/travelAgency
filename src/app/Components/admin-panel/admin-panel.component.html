@@ -1,13 +1,12 @@
 <ngb-alert *ngIf="showAlert" (close)="showAlert = false">
     Added
 </ngb-alert>
-<div class='row justify-content-around bg-primary'>
+<div class='row justify-content-around'>
     <!-- Form for adding new travel package -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard">
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6 componentCard">
         <form (ngSubmit)="addNewTravelPackage()" style="margin-top:48px;">
             <div class="form-group">
-                <label style="color: black;font-size: large;text-align: center;" for="item">Add new travel
-                    package</label>
+                <h1>Add new travel <span>Package</span></h1>
                 <input type="title" class="form-control" placeholder="Enter title..." id="item" required
                     [(ngModel)]="itemValue" name="item">
                 <input type="title" class="form-control" placeholder="Enter subtitle..." id="item" required
@@ -21,7 +20,7 @@
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2 style='color:black;margin-top: 24px;'>Current Travel Packages</h2>
+            <h2 *ngIf="( items | async )?.length > 0" style='color:black;margin-top: 24px;'>Current Travel Packages</h2>
             <div *ngFor='let item of items | async' class="well well-sm mt-4 justify-content-between d-flex">
                 <h2 style='color:black'>{{'Title: ' + item.title + '    Subtitle: ' + item.subtitle}}</h2>
                 <button type="button" class="btn btn-danger" (click)='removeItem(item,"items")'>Delete</button>
@@ -30,10 +29,10 @@
     </div>
 
     <!-- Form for adding new image to slideShow -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard">
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6 componentCard">
         <form (ngSubmit)="addNewSlideshowImage()" style="margin-top:48px;">
             <div class="form-group">
-                <label style="color: black;font-size: large;" for="item">Add new slideshow image</label>
+                <h1>Add new <span>SlideShow Image</span></h1>
                 <input type="text" class=" form-control" placeholder="Enter photo title..." id="titlePhoto" required
                     [(ngModel)]="titlePhoto" name="titlePhoto">
                 <input type="text" class=" form-control" placeholder="Enter link..." id="urlLink" required
@@ -45,9 +44,9 @@
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2 style='color:black;margin-top: 24px;'>Current Slide show images</h2>
+            <h2  *ngIf="( slideShowImages | async )?.length > 0" style='color:black;margin-top: 24px;'>Current Slide show images</h2>
             <div *ngFor='let image of slideShowImages | async' class="well well-sm mt-4 justify-content-between d-flex">
-                <img style='height:100px;width:100px' src="{{image.urlSlideshowPhoto}}">
+                <img style='height:100px;width:100px' src="{{image.imageUrl}}">
                 <button type="button" class="btn btn-danger"
                     (click)='removeItem(image,"slideshowImages")'>Delete</button>
             </div>
@@ -55,10 +54,10 @@
     </div>
 
     <!-- Form for adding new post to newsBlog -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6 bg-light componentCard mw-45">
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6  componentCard mw-45">
         <form (ngSubmit)="addNewPost()" style="margin-top:48px;">
             <div class="form-group">
-                <label style="color: black;font-size: large;" for="item">New post</label>
+                <h1>Add new <span>Post</span></h1>
                 <input type="text" class=" form-control" placeholder="Enter a title..." id="postTitle" required
                     [(ngModel)]="postTitle" name="postTitle">
                 <input type="text" class=" form-control" placeholder="Enter message" id="postMessage" required
@@ -70,11 +69,38 @@
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2 style='color:black;margin-top: 24px;'>Current posts</h2>
+            <h2  *ngIf="( posts | async )?.length > 0" style='color:black;margin-top: 24px;'>Current posts</h2>
             <div *ngFor='let post of posts | async' class="well well-sm mt-4 justify-content-around d-flex">
-                <img style='height:100px;width:100px' src="{{post.postPhotoUrl}}">
-                <h2 style='color:black'> {{'Title: ' + post.postTitle}}</h2>
+                <img style='height:100px;width:100px' src="{{post.imageUrl}}">
+                <h2 style='color:black'> {{'Title: ' + post.title}}</h2>
                 <button type="button" class="btn btn-danger" (click)='removeItem(post,"posts")'>Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Form for adding new hotel -->
+    <div class="col-xs-12 col-sm-6 col-md-6 my-6  componentCard mw-45" style="margin-bottom: 100px;">
+        <form (ngSubmit)="addNewHotel()" style="margin-top:48px;">
+            <div class="form-group">
+                <h1>Add new <span>Hotel</span></h1>
+                <input type="text" class=" form-control" placeholder="Enter a title..." id="hotelTitle" required
+                    [(ngModel)]="hotelTitle" name="hotelTitle">
+                <input type="text" class=" form-control" placeholder="Enter message" id="hotelMessage" required
+                    [(ngModel)]="hotelMessage" name="hotelMessage">
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="hotelPhotoUrl" required
+                    [(ngModel)]="hotelPhotoUrl" name="hotelPhotoUrl">
+                    <input type="text" class=" form-control" placeholder="Enter  url..." id="hotelUrl" required
+                    [(ngModel)]="hotelUrl" name="hotelUrl">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <h2  *ngIf="( hotels | async )?.length > 0" style='color:black;margin-top: 24px;'>Current hotels</h2>
+            <div *ngFor='let hotel of hotels | async' class="well well-sm mt-4 justify-content-around d-flex">
+                <img style='height:100px;width:100px' src="{{hotel.imageUrl}}">
+                <h2 style='color:black'> {{'Title: ' + hotel.title}}</h2>    
+                <button type="button" class="btn btn-danger" (click)='removeItem(hotel,"hotels")'>Delete</button>
             </div>
         </form>
     </div>

@@ -1,7 +1,6 @@
 import 'firebase/firestore';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { User } from "../../user";
-import { FormControl } from '@angular/forms';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -20,6 +19,7 @@ export class SigninComponent implements OnInit {
   dropDownForSignup = false;
   email = ''
   password = ''
+  name = ''
 
   constructor(
     private firebaseAuth: AngularFireAuth,

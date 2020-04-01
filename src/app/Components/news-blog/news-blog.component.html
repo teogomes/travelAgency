@@ -1,11 +1,11 @@
 
-<h1>Read all the news about our travel agency</h1>
-<div class="container w-75 float-left">
-    <div *ngFor='let post of posts | async' class="card mt-4 justify-content-start d-flex flex-row cardContainer" style='height:150px'>
-        <img class="h-100 w-25" src="{{post.postPhotoUrl}}">
+<h1>Read all our<span> news</span></h1>
+<div class="container w-50 float-left">
+    <div *ngFor='let post of posts | async' [routerLink]="['/detailsPage',post]" class="card mt-4 justify-content-start d-flex flex-row cardContainer p-3" style='height:200px'>
+        <img class="h-100 w-25" src="{{post.imageUrl}}">
         <div class='postContent'>
-            <h2 style='color:black'> {{post.postTitle}}</h2>
-            <p style='color:grey'> {{post.postTitle}} </p>
+            <h2 style='color:black'> {{post.title}}</h2>
+            <p style='color:grey'> {{post.message}} </p>
         </div>
     </div>
 </div>

@@ -3,10 +3,11 @@
     [autoPlayWaitForLazyLoad]="true" [showDots]="showDots">
 </slideshow>
 
+<h1><span>Special</span> vacation packages just for <span>you</span></h1>
 <div class="container-fluid  h-75">
     <div class="row mt-5 mb-5 justify-content-around">
         <div *ngFor="let travel of items | async" class="col-xs-12 col-sm-6 col-md-4 my-4">
-            <mat-card class="example-card mx-4 h-100">
+            <mat-card [routerLink]="['/detailsPage',travel]" class="example-card mx-4 h-100">
                 <mat-card-header>
                     <mat-card-title>{{travel.title}}</mat-card-title>
                     <mat-card-subtitle>{{travel.subtitle}}</mat-card-subtitle>

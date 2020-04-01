@@ -22,9 +22,14 @@ export class AdminPanelComponent implements OnInit {
   postTitle = '';
   postMessage = '';
   postPhotoUrl = '';
+  hotelTitle = '';
+  hotelMessage = '';
+  hotelPhotoUrl = '';
+  hotelUrl = '';
   items: Observable<any[]>;
   slideShowImages: Observable<any[]>;
   posts: Observable<any[]>;
+  hotels: Observable<any[]>;
   showAlert = false;
 
   ngOnInit() {
@@ -35,6 +40,7 @@ export class AdminPanelComponent implements OnInit {
     this.items = db.list('items').valueChanges();
     this.slideShowImages = db.list('slideshowImages').valueChanges();
     this.posts = db.list('posts').valueChanges();
+    this.hotels = db.list('hotels').valueChanges();
   }
 
   addNewTravelPackage() {
@@ -45,15 +51,22 @@ export class AdminPanelComponent implements OnInit {
   }
 
   addNewSlideshowImage() {
-    this.db.list('slideshowImages').push({ urlSlideshowPhoto: this.urlSlideshowPhoto, urlLink: this.urlLink, titlePhoto: this.titlePhoto }).then((res) => {
+    this.db.list('slideshowImages').push({ imageUrl: this.urlSlideshowPhoto, urlLink: this.urlLink, titlePhoto: this.titlePhoto }).then((res) => {
       this.db.object(`slideshowImages/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
     })
     this.successAndResetFields()
   }
 
   addNewPost() {
-    this.db.list('posts').push({ postTitle:this.postTitle, postMessage: this.postMessage , postPhotoUrl:this.postPhotoUrl }).then((res) => {
+    this.db.list('posts').push({ title:this.postTitle, message: this.postMessage , imageUrl:this.postPhotoUrl }).then((res) => {
       this.db.object(`posts/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
+    })
+    this.successAndResetFields()
+  }
+
+  addNewHotel() {
+    this.db.list('hotels').push({ title:this.hotelTitle, message: this.hotelMessage , imageUrl:this.hotelPhotoUrl,url:this.hotelUrl }).then((res) => {
+      this.db.object(`hotels/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
     })
     this.successAndResetFields()
   }
@@ -69,6 +82,10 @@ export class AdminPanelComponent implements OnInit {
     this.postTitle = '';
     this.postMessage = '';
     this.postPhotoUrl = '';
+    this.hotelTitle = '';
+    this.hotelMessage = '';
+    this.hotelPhotoUrl = '';
+    this.hotelUrl = '';
   }
 
   removeItem(item:any,path:string) {this.db.object(`${path}/${item.ID}`).remove()}

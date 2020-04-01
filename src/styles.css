@@ -8,7 +8,7 @@ section {
     margin: 0 ;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color: gainsboro;; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:whitesmoke; }
 
 .footer {
     left: 0;

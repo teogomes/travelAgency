@@ -1,19 +1,9 @@
 {
-  "hosting": [
-    {
-      "target": "travelagency",
-      "public": "dist/travelagency",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    }
-  ]
+  "hosting": {
+    "public": "dist/travelagency",
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    } ]
+  }
 }
