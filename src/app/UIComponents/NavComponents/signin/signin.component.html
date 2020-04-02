@@ -1,5 +1,6 @@
 <!-- Login / Register -->
 <div ngbDropdown class="dropdown">
+  <h1>{{userDisplayName}}</h1>
   <a href="#" *ngIf='isLoggedIn()' (click)='SignOut()' class="logoutBtn"><b>Logout</b></a>
   <a href="#" *ngIf='!isLoggedIn()' ngbDropdownToggle class="dropdown-toggle bg-dark "><b>Login</b></a>
   <ul ngbDropdownMenu id="login-dp" class="dropdown-menu">
@@ -12,7 +13,7 @@
       <div class="form-group">
         <label class="sr-only" for="exampleInputPassword2">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword2" [(ngModel)]="password" name='password'
-          placeholder="Password" required>
+          placeholder="Password" required autocomplete="on">
         <div *ngIf='!dropDownForSignup' class="help-block text-right"><a href="">Forget the password ?</a></div>
       </div>
       <div *ngIf='dropDownForSignup' class="signUpInfo mt-5 mb-3">

@@ -1,6 +1,6 @@
 import 'firebase/firestore';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { User } from "../../user";
+import { User } from "../../../user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -20,6 +20,7 @@ export class SigninComponent implements OnInit {
   email = ''
   password = ''
   name = ''
+  userDisplayName = ''
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -51,6 +52,7 @@ export class SigninComponent implements OnInit {
   SignIn() {
     return this.firebaseAuth.signInWithEmailAndPassword(this.email, this.password)
       .then((result) => {
+        this.userDisplayName = result.user.displayName
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
@@ -62,12 +64,15 @@ export class SigninComponent implements OnInit {
     return this.firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       .then((result) => {
         window.alert("userCreated")
+        result.user.updateProfile({
+          displayName:this.name
+        })
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
       })
   }
-  
+
 
   // Reset Forggot password
   ForgotPassword() {
@@ -88,7 +93,7 @@ export class SigninComponent implements OnInit {
   // Returns true when user is looged in and email is verified
   isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null 
+    return user !== null
   }
 
   SetUserData(user) {

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import {Routes , RouterModule, Router} from '@angular/router';
-import {AboutComponent} from './Components/about/about.component'
-import {HomeComponent} from './Components/home/home.component';
-import {AdminPanelComponent} from './Components/admin-panel/admin-panel.component';
-import {NewsBlogComponent} from './Components/news-blog/news-blog.component';
-import {ContactComponent} from './Components/contact/contact.component';
-import {BookingComponent} from './Components/booking/booking.component';
-import {DetailsPageComponent} from './Components/details-page/details-page.component';
-import {HotelsComponent} from './Components/hotels/hotels.component';
-import { TripsComponent } from './Components/trips/trips.component';
+import {AboutComponent} from './UIComponents/NavComponents/about/about.component'
+import {HomeComponent} from './UIComponents/NavComponents/home/home.component';
+import {AdminPanelComponent} from './UIComponents/NavComponents/admin-panel/admin-panel.component';
+import {NewsBlogComponent} from './UIComponents/NavComponents/news-blog/news-blog.component';
+import {ContactComponent} from './UIComponents/NavComponents/contact/contact.component';
+import {BookingComponent} from './UIComponents/NavComponents/booking/booking.component';
+import {DetailsPageComponent} from './UIComponents/NavComponents/details-page/details-page.component';
+import {HotelsComponent} from './UIComponents/NavComponents/hotels/hotels.component';
+import { TripsComponent } from './UIComponents/NavComponents/trips/trips.component';
 
 const routes: Routes = [
   {path: '', component:HomeComponent },

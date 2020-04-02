@@ -17,17 +17,18 @@ import { environment } from '../environments/environment';
 
 //Componenets
 import { AppComponent } from './app.component';
-import { NavComponent } from './Components/nav/nav.component';
-import { AboutComponent } from './Components/about/about.component';
-import { HomeComponent } from './Components/home/home.component';
-import { AdminPanelComponent } from './Components/admin-panel/admin-panel.component';
-import { SigninComponent } from './Components/signin/signin.component';
-import { NewsBlogComponent } from './Components/news-blog/news-blog.component';
-import { ContactComponent } from './Components/contact/contact.component';
-import { BookingComponent } from './Components/booking/booking.component';
-import { DetailsPageComponent } from './Components/details-page/details-page.component';
-import { HotelsComponent } from './Components/hotels/hotels.component';
-import { TripsComponent } from './Components/trips/trips.component';
+import { NavComponent } from './UIComponents/nav/nav.component';
+import { AboutComponent } from './UIComponents/NavComponents/about/about.component';
+import { HomeComponent } from './UIComponents/NavComponents/home/home.component';
+import { AdminPanelComponent } from './UIComponents/NavComponents/admin-panel/admin-panel.component';
+import { SigninComponent } from './UIComponents/NavComponents/signin/signin.component';
+import { NewsBlogComponent } from './UIComponents/NavComponents/news-blog/news-blog.component';
+import { ContactComponent } from './UIComponents/NavComponents/contact/contact.component';
+import { BookingComponent } from './UIComponents/NavComponents/booking/booking.component';
+import { DetailsPageComponent } from './UIComponents/NavComponents/details-page/details-page.component';
+import { HotelsComponent } from './UIComponents/NavComponents/hotels/hotels.component';
+import { TripsComponent } from './UIComponents/NavComponents/trips/trips.component';
+import { AdminPanelCellComponent } from './UIComponents/admin-panel-cell/admin-panel-cell.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { TripsComponent } from './Components/trips/trips.component';
     DetailsPageComponent,
     HotelsComponent,
     TripsComponent,
+    AdminPanelCellComponent,
   ],
   imports: [
     NgbModule,

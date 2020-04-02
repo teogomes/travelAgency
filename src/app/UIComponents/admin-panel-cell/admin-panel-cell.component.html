@@ -1,0 +1,34 @@
+<div class="p-4 componentCard">
+    <ngb-alert *ngIf="showAlert" (close)="showAlert = false">Added</ngb-alert>
+    <form
+        (ngSubmit)='postToFirebase()'
+        style="margin-top:18px;">
+        <div class="form-group">
+            <h1>{{cardTitle}}</h1>
+            <input type="title" class="form-control" placeholder="Enter title..." id="{{ key + '-titleValue'  }}" required
+                [(ngModel)]="titleValue" name="titleValue">
+            <input type="title" class="form-control" placeholder="Enter subtitle..." id="{{ key + '-subtitleValue'  }}" required
+                [(ngModel)]="subtitleValue" name="subtitle">
+            <input type="title" class="form-control" placeholder="Enter message..." id="{{ key + '-messageValue'  }}" required
+                [(ngModel)]="messageValue" name="message">
+            <input type="text" class=" form-control" placeholder="Enter photo url..." id="{{ key + '-urlPhoto'  }}" required
+                [(ngModel)]="urlPhoto" name="urlPhoto">
+            <select *ngIf='tripTypes?.length > 0' class="form-control h-75 mt-2"  id="{{ key + '-roadTrip'  }}" name="typeInput" [(ngModel)]="tripType">
+                <option value="roadTrip"></option>
+                <option value="airplane">By airplane</option>
+                <option value="cruise">Cruise</option>
+            </select>
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        <h2 *ngIf="( items | async )?.length > 0" style='color:black;margin-top: 24px;'>Current Travel Packages</h2>
+        <div *ngFor='let item of items | async' class="well well-sm mt-4 justify-content-between d-flex">
+            <h2 *ngIf=(item.title) style='color:black'>{{'Title: ' + item.title}}</h2>
+            <h3 *ngIf=(item.subtitle) style='color:black'>{{'Subtitle: ' + item.subtitle}}</h3>
+            <img *ngIf=(item.imageUrl) style='height:100px;width:100px' src="{{item.imageUrl}}">
+            <button type="button" class="btn btn-danger" (click)='removeItem(item)'>Delete</button>
+        </div>
+    </form>
+</div>
