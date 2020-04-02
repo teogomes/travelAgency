@@ -1,19 +1,19 @@
-<ngb-alert *ngIf="showAlert" (close)="showAlert = false">
-    Added
-</ngb-alert>
-<div class='row justify-content-around'>
+<ngb-alert *ngIf="showAlert" (close)="showAlert = false">Added</ngb-alert>
+<div class='row justify-content-around align ' style="padding: 0px 50px;">
     <!-- Form for adding new travel package -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6 componentCard">
-        <form (ngSubmit)="addNewTravelPackage()" style="margin-top:48px;">
+    <div class="col-12 col-sm-12 col-md-5 componentCard">
+        <form
+            (ngSubmit)='postToFirebase({ title: this.itemValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto },"items")'
+            style="margin-top:48px;">
             <div class="form-group">
                 <h1>Add new travel <span>Package</span></h1>
-                <input type="title" class="form-control" placeholder="Enter title..." id="item" required
-                    [(ngModel)]="itemValue" name="item">
-                <input type="title" class="form-control" placeholder="Enter subtitle..." id="item" required
+                <input type="title" class="form-control" placeholder="Enter title..." id="itemValue" required
+                    [(ngModel)]="itemValue" name="itemValue">
+                <input type="title" class="form-control" placeholder="Enter subtitle..." id="subtitleValue" required
                     [(ngModel)]="subtitleValue" name="subtitle">
-                <input type="title" class="form-control" placeholder="Enter message..." id="item" required
+                <input type="title" class="form-control" placeholder="Enter message..." id="messageValue" required
                     [(ngModel)]="messageValue" name="message">
-                <input type="text" class=" form-control" placeholder="Enter photo url..." id="item" required
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="urlPhoto" required
                     [(ngModel)]="urlPhoto" name="urlPhoto">
             </div>
 
@@ -29,8 +29,10 @@
     </div>
 
     <!-- Form for adding new image to slideShow -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6 componentCard">
-        <form (ngSubmit)="addNewSlideshowImage()" style="margin-top:48px;">
+    <div class="col-12 col-sm-12 col-md-5  componentCard">
+        <form
+            (ngSubmit)='postToFirebase({imageUrl: this.urlSlideshowPhoto, urlLink: this.urlLink, titlePhoto: this.titlePhoto },"slideshowImages")'
+            style="margin-top:48px;">
             <div class="form-group">
                 <h1>Add new <span>SlideShow Image</span></h1>
                 <input type="text" class=" form-control" placeholder="Enter photo title..." id="titlePhoto" required
@@ -44,7 +46,8 @@
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2  *ngIf="( slideShowImages | async )?.length > 0" style='color:black;margin-top: 24px;'>Current Slide show images</h2>
+            <h2 *ngIf="( slideShowImages | async )?.length > 0" style='color:black;margin-top: 24px;'>Current Slide show
+                images</h2>
             <div *ngFor='let image of slideShowImages | async' class="well well-sm mt-4 justify-content-between d-flex">
                 <img style='height:100px;width:100px' src="{{image.imageUrl}}">
                 <button type="button" class="btn btn-danger"
@@ -52,10 +55,12 @@
             </div>
         </form>
     </div>
-
+   
     <!-- Form for adding new post to newsBlog -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6  componentCard mw-45">
-        <form (ngSubmit)="addNewPost()" style="margin-top:48px;">
+    <div class="col-12 col-sm-12 col-md-5 componentCard mw-45">
+        <form
+            (ngSubmit)='postToFirebase({ title: this.postTitle, message: this.postMessage, imageUrl: this.postPhotoUrl },"posts")'
+            style="margin-top:48px;">
             <div class="form-group">
                 <h1>Add new <span>Post</span></h1>
                 <input type="text" class=" form-control" placeholder="Enter a title..." id="postTitle" required
@@ -69,7 +74,7 @@
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2  *ngIf="( posts | async )?.length > 0" style='color:black;margin-top: 24px;'>Current posts</h2>
+            <h2 *ngIf="( posts | async )?.length > 0" style='color:black;margin-top: 24px;'>Current posts</h2>
             <div *ngFor='let post of posts | async' class="well well-sm mt-4 justify-content-around d-flex">
                 <img style='height:100px;width:100px' src="{{post.imageUrl}}">
                 <h2 style='color:black'> {{'Title: ' + post.title}}</h2>
@@ -78,9 +83,12 @@
         </form>
     </div>
 
+    
     <!-- Form for adding new hotel -->
-    <div class="col-xs-12 col-sm-6 col-md-6 my-6  componentCard mw-45" style="margin-bottom: 100px;">
-        <form (ngSubmit)="addNewHotel()" style="margin-top:48px;">
+    <div class="col-12 col-sm-12 col-md-5  componentCard mw-45" style="margin-bottom: 100px;">
+        <form
+            (ngSubmit)='postToFirebase({ title: this.hotelTitle, message: this.hotelMessage, imageUrl: this.hotelPhotoUrl, url: this.hotelUrl },"hotels")'
+            style="margin-top:48px;">
             <div class="form-group">
                 <h1>Add new <span>Hotel</span></h1>
                 <input type="text" class=" form-control" placeholder="Enter a title..." id="hotelTitle" required
@@ -89,18 +97,52 @@
                     [(ngModel)]="hotelMessage" name="hotelMessage">
                 <input type="text" class=" form-control" placeholder="Enter photo url..." id="hotelPhotoUrl" required
                     [(ngModel)]="hotelPhotoUrl" name="hotelPhotoUrl">
-                    <input type="text" class=" form-control" placeholder="Enter  url..." id="hotelUrl" required
+                <input type="text" class=" form-control" placeholder="Enter  url..." id="hotelUrl" required
                     [(ngModel)]="hotelUrl" name="hotelUrl">
             </div>
 
-            <div class="btn-group">
+            <div class="btn-group mb-5">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
-            <h2  *ngIf="( hotels | async )?.length > 0" style='color:black;margin-top: 24px;'>Current hotels</h2>
+            <h2 *ngIf="( hotels | async )?.length > 0" style='color:black;margin-top: 24px;'>Current hotels</h2>
             <div *ngFor='let hotel of hotels | async' class="well well-sm mt-4 justify-content-around d-flex">
                 <img style='height:100px;width:100px' src="{{hotel.imageUrl}}">
-                <h2 style='color:black'> {{'Title: ' + hotel.title}}</h2>    
+                <h2 style='color:black'> {{'Title: ' + hotel.title}}</h2>
                 <button type="button" class="btn btn-danger" (click)='removeItem(hotel,"hotels")'>Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Form for adding new trip -->
+    <div class="col-12 col-sm-12 col-md-5 componentCard mw-45" style="margin-bottom: 100px;">
+        <form
+            (ngSubmit)='postToFirebase({ title:tripTitle, message: tripMessage , imageUrl:tripPhotoUrl,url:tripUrl,type:tripType },"trips")'
+            style="margin-top:48px;">
+            <div class="form-group">
+                <h1>Add new <span>trip</span></h1>
+                <input type="text" class=" form-control" placeholder="Enter a title..." id="tripTitle" required
+                    [(ngModel)]="tripTitle" name="tripTitle">
+                <input type="text" class=" form-control" placeholder="Enter message" id="tripMessage" required
+                    [(ngModel)]="tripMessage" name="tripMessage">
+                <input type="text" class=" form-control" placeholder="Enter photo url..." id="tripPhotoUrl" required
+                    [(ngModel)]="tripPhotoUrl" name="tripPhotoUrl">
+                <input type="text" class=" form-control" placeholder="Enter  url..." id="tripUrl" required
+                    [(ngModel)]="tripUrl" name="tripUrl">
+                <select class="form-control h-75 mt-2" id="typeInput" name="typeInput" [(ngModel)]="tripType">
+                    <option value="roadTrip">Road trip</option>
+                    <option value="airplane">By airplane</option>
+                    <option value="cruise">Cruise</option>
+                </select>
+            </div>
+
+            <div class="btn-group mb-5">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <h2 *ngIf="( trips | async )?.length > 0" style='color:black;margin-top: 24px;'>Current hotels</h2>
+            <div *ngFor='let trip of trips | async' class="well well-sm mt-4 justify-content-around d-flex">
+                <img style='height:100px;width:100px' src="{{trip.imageUrl}}">
+                <h2 style='color:black'> {{'Title: ' + trip.title}}</h2>
+                <button type="button" class="btn btn-danger" (click)='removeItem(trip,"trips")'>Delete</button>
             </div>
         </form>
     </div>

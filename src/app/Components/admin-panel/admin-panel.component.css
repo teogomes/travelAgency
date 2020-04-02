@@ -14,12 +14,13 @@ span {
 .componentCard {
     border-radius: 5px;
     box-shadow: 7px 14px 17px -9px rgba(0,0,0,0.63);
-    max-width: 400px;
+    /* max-width: 400px; */
+    background-color: whitesmoke;
     margin-top: 50px;
     -webkit-transition: all .4s ease-in-out; 
 }
 
 .componentCard:hover {
     background-color: lightseagreen;
-    -webkit-transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.08,1.08);
 }

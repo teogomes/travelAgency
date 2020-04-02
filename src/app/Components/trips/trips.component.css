@@ -1,0 +1,30 @@
+h1 {
+    color: #535353; 
+    font-size:45px;
+    font-weight:600;
+    padding:25px;
+}
+
+span {
+    color: #AF0808;
+    font-size:45px;
+    font-weight:700;
+}
+
+
+.example-card {
+    filter: gray; /* IE5+ */
+    -webkit-transition: all .4s ease-in-out; 
+}
+
+.example-card:not([class*=mat-elevation-z]) {
+  box-shadow: 7px 14px 17px -9px rgba(0,0,0,0.63);
+}
+
+.example-card:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  /* -webkit-transform: translateY(-15px); */
+  -webkit-transform: scale(1.15,1.15);
+}
+  

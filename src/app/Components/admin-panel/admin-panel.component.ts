@@ -26,6 +26,11 @@ export class AdminPanelComponent implements OnInit {
   hotelMessage = '';
   hotelPhotoUrl = '';
   hotelUrl = '';
+  tripTitle = '';
+  tripMessage = '';
+  tripPhotoUrl = '';
+  tripUrl = '';
+  tripType = 'roadTrip';
   items: Observable<any[]>;
   slideShowImages: Observable<any[]>;
   posts: Observable<any[]>;
@@ -43,32 +48,13 @@ export class AdminPanelComponent implements OnInit {
     this.hotels = db.list('hotels').valueChanges();
   }
 
-  addNewTravelPackage() {
-    this.db.list('items').push({ title: this.itemValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto }).then((res) => {
-      this.db.object(`items/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
-    })
-    this.successAndResetFields()
-  }
-
-  addNewSlideshowImage() {
-    this.db.list('slideshowImages').push({ imageUrl: this.urlSlideshowPhoto, urlLink: this.urlLink, titlePhoto: this.titlePhoto }).then((res) => {
-      this.db.object(`slideshowImages/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
-    })
-    this.successAndResetFields()
-  }
-
-  addNewPost() {
-    this.db.list('posts').push({ title:this.postTitle, message: this.postMessage , imageUrl:this.postPhotoUrl }).then((res) => {
-      this.db.object(`posts/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
-    })
-    this.successAndResetFields()
-  }
-
-  addNewHotel() {
-    this.db.list('hotels').push({ title:this.hotelTitle, message: this.hotelMessage , imageUrl:this.hotelPhotoUrl,url:this.hotelUrl }).then((res) => {
-      this.db.object(`hotels/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
-    })
-    this.successAndResetFields()
+  postToFirebase(values,pathName) {
+    if (pathName) {
+      this.db.list(pathName).push(values).then((res) => {
+        this.db.object(`${pathName}/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
+      })
+      this.successAndResetFields()
+    }
   }
 
   successAndResetFields() {
@@ -86,8 +72,14 @@ export class AdminPanelComponent implements OnInit {
     this.hotelMessage = '';
     this.hotelPhotoUrl = '';
     this.hotelUrl = '';
+    this.tripTitle = '';
+    this.tripMessage = '';
+    this.tripPhotoUrl = '';
+    this.tripUrl = '';
+    this.tripType = '';
+
   }
 
-  removeItem(item:any,path:string) {this.db.object(`${path}/${item.ID}`).remove()}
+  removeItem(item: any, path: string) { this.db.object(`${path}/${item.ID}`).remove() }
 
 }
