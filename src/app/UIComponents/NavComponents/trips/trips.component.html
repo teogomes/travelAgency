@@ -1,7 +1,7 @@
 <h1><span>Trip plans</span> just for <span>you</span></h1>
 <div class="container-fluid  h-75">
     <div class="row mt-5 mb-5 justify-content-around">
-        <div *ngFor="let trip of trips | async" class="col-xs-12 col-sm-6 col-md-4 my-4">
+        <div *ngFor="let trip of filteredTrips" class="col-xs-12 col-sm-6 col-md-4 my-4">
             <mat-card [routerLink]="['/detailsPage',trip]" class="example-card mx-4 h-100">
                 <mat-card-header>
                     <mat-card-title>{{trip.title}}</mat-card-title>

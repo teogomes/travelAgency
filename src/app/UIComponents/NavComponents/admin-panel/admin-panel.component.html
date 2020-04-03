@@ -1,8 +1,8 @@
+<h1>Website <span>controller</span></h1>
 <div class='row justify-content-around' style="padding: 0px 50px;">
     <!-- Form for adding new travel package -->
     <div class='col-4'>
-        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"'
-            [cardTitle]='"Travel package manager"' >
+        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"' [cardTitle]='"Travel package manager"'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new image to slideShow -->
@@ -13,21 +13,25 @@
     </div>
     <!-- Form for adding new post to newsBlog -->
     <div class='col-4'>
-        <app-admin-panel-cell [key]='"posts"' [pathName]='"posts"'
-            [cardTitle]='"Blogspot Manager"' >
+        <app-admin-panel-cell [key]='"posts"' [pathName]='"posts"' [cardTitle]='"Blogspot Manager"'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new hotel -->
     <div class='col-4'>
-        <app-admin-panel-cell [key]='"hotels"' [pathName]='"hotels"'
-            [cardTitle]='"Hotels Manager"' >
+        <app-admin-panel-cell [key]='"hotels"' [pathName]='"hotels"' [cardTitle]='"Hotels Manager"'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new trip -->
     <div class='col-4'>
-        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"'
-            [tripTypes]='["roadTrip","airplane","cruise"]'
+        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"' [tripTypes]='["roadTrip","airplane","cruise"]'
             [cardTitle]='"Trips Manager"'>
         </app-admin-panel-cell>
+    </div>
+</div>
+<div class='container-fluid secondContainer'>
+    <h1>Messages from <span>users</span></h1>
+    <div *ngFor='let message of messages | async' class='well'>
+        <h3><span>Name:</span> {{message.contactFormName}}</h3>
+        <h3><span>Message:</span> {{message.contactFormMessage}}</h3>
     </div>
 </div>

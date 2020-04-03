@@ -14,9 +14,9 @@
             <input type="text" class=" form-control" placeholder="Enter photo url..." id="{{ key + '-urlPhoto'  }}" required
                 [(ngModel)]="urlPhoto" name="urlPhoto">
             <select *ngIf='tripTypes?.length > 0' class="form-control h-75 mt-2"  id="{{ key + '-roadTrip'  }}" name="typeInput" [(ngModel)]="tripType">
-                <option value="roadTrip"></option>
+                <option value="roadTrip">Road trip</option>
                 <option value="airplane">By airplane</option>
-                <option value="cruise">Cruise</option>
+                <option value="cruises">Cruise</option>
             </select>
         </div>
 

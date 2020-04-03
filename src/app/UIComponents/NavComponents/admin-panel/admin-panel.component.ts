@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminPanelCellComponent } from '../../admin-panel-cell/admin-panel-cell.component'
 import 'firebase/database';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
@@ -11,10 +10,14 @@ import { Observable } from 'rxjs';
 })
 
 export class AdminPanelComponent implements OnInit {
-
+  messages: Observable<any[]>
 
   ngOnInit() {
 
   }
-  constructor() {}
+
+  constructor(public db: AngularFireDatabase) {
+    this.messages = db.list('contactFormMessages').valueChanges()
+  }
+
 }

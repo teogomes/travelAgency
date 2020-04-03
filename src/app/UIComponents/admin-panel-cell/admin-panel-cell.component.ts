@@ -16,9 +16,6 @@ export class AdminPanelCellComponent implements OnInit {
   @Input() tripTypes: [string];
   @Input() cardTitle: string;
 
-  // firebaseValues=['packages':'{ title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto }',
-
-
   titleValue = '';
   subtitleValue = '';
   messageValue = '';

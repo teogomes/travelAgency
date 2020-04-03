@@ -1,8 +1,9 @@
 import 'firebase/firestore';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { User } from "../../../user";
+import { User, FirebaseUser } from "../../../user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-signin',
@@ -17,16 +18,21 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 export class SigninComponent implements OnInit {
   userData: any; // Save logged in user data
   dropDownForSignup = false;
+  users: FirebaseUser[];
   email = ''
   password = ''
   name = ''
   userDisplayName = ''
+  userAge = 18;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private firestore: AngularFirestore // Inject Firebase auth service
+    private firestore: AngularFirestore, // Inject Firebase auth service,
+    public db: AngularFireDatabase
   ) {
-
+    db.list('users').valueChanges().subscribe((res:FirebaseUser[]) => {
+      this.users = res
+    })
     this.firebaseAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
@@ -52,7 +58,7 @@ export class SigninComponent implements OnInit {
   SignIn() {
     return this.firebaseAuth.signInWithEmailAndPassword(this.email, this.password)
       .then((result) => {
-        this.userDisplayName = result.user.displayName
+        this.SearchDatabaseFor(result.user)
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
@@ -64,13 +70,24 @@ export class SigninComponent implements OnInit {
     return this.firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       .then((result) => {
         window.alert("userCreated")
-        result.user.updateProfile({
-          displayName:this.name
-        })
-        this.SetUserData(result.user);
+        this.AddUserToDatabase(result.user)        
       }).catch((error) => {
         window.alert(error.message)
       })
+  }
+
+  AddUserToDatabase(user:firebase.User) {
+    this.db.list('users').push({uid:user.uid , displayName:this.name,role:'user',email:user.email}).then((res) => {
+      this.db.object(`users/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
+    })
+    this.SetUserData(user);
+  }
+  
+  SearchDatabaseFor(user:firebase.User) {
+    var currentUser = this.users.find((firebaseUser) => {
+      return firebaseUser.uid == user.uid
+    })
+    debugger
   }
 
 
