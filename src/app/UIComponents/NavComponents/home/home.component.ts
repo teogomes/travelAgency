@@ -41,8 +41,10 @@ export class HomeComponent implements OnInit {
   items: Observable<any[]>;
   imageUrls: String[];
   slideshowImages: Observable<any[]>;
+  
 
   ngOnInit() {
+
   }
 
   constructor(public db: AngularFireDatabase) {
@@ -54,4 +56,5 @@ export class HomeComponent implements OnInit {
       })
     })
   }
+
 }

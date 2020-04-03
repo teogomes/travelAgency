@@ -1,19 +1,20 @@
 <div class="p-4 componentCard">
     <ngb-alert *ngIf="showAlert" (close)="showAlert = false">Added</ngb-alert>
-    <form
-        (ngSubmit)='postToFirebase()'
-        style="margin-top:18px;">
+    <form (ngSubmit)='postToFirebase()' style="margin-top:18px;">
         <div class="form-group">
             <h1>{{cardTitle}}</h1>
-            <input type="title" class="form-control" placeholder="Enter title..." id="{{ key + '-titleValue'  }}" required
-                [(ngModel)]="titleValue" name="titleValue">
-            <input type="title" class="form-control" placeholder="Enter subtitle..." id="{{ key + '-subtitleValue'  }}" required
-                [(ngModel)]="subtitleValue" name="subtitle">
-            <input type="title" class="form-control" placeholder="Enter message..." id="{{ key + '-messageValue'  }}" required
-                [(ngModel)]="messageValue" name="message">
-            <input type="text" class=" form-control" placeholder="Enter photo url..." id="{{ key + '-urlPhoto'  }}" required
-                [(ngModel)]="urlPhoto" name="urlPhoto">
-            <select *ngIf='tripTypes?.length > 0' class="form-control h-75 mt-2"  id="{{ key + '-roadTrip'  }}" name="typeInput" [(ngModel)]="tripType">
+            <input type="title" class="form-control" placeholder="Enter title..." id="{{ key + '-titleValue'  }}"
+                required [(ngModel)]="titleValue" name="titleValue">
+            <input type="title" class="form-control" placeholder="Enter subtitle..." id="{{ key + '-subtitleValue'  }}"
+                required [(ngModel)]="subtitleValue" name="subtitle">
+            <input type="title" class="form-control" placeholder="Enter message..." id="{{ key + '-messageValue'  }}"
+                required [(ngModel)]="messageValue" name="message">
+            <input type="text" class=" form-control" placeholder="Enter photo url..." id="{{ key + '-urlPhoto'  }}"
+                required [(ngModel)]="urlPhoto" name="urlPhoto">
+            <input *ngIf='showPriceInput' type="text" class=" form-control" placeholder="Enter a price..." id="{{ key + '-price'  }}" required
+                [(ngModel)]="price" name="price">
+            <select *ngIf='tripTypes?.length > 0' class="form-control h-75 mt-2" id="{{ key + '-roadTrip'  }}"
+                name="typeInput" [(ngModel)]="tripType">
                 <option value="roadTrip">Road trip</option>
                 <option value="airplane">By airplane</option>
                 <option value="cruises">Cruise</option>

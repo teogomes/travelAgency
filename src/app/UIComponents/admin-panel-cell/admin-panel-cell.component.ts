@@ -15,12 +15,14 @@ export class AdminPanelCellComponent implements OnInit {
   @Input() pathName: string;
   @Input() tripTypes: [string];
   @Input() cardTitle: string;
+  @Input() showPriceInput: boolean;
 
   titleValue = '';
   subtitleValue = '';
   messageValue = '';
   urlPhoto = '';
   urlLink = '';
+  price = '';
   tripType = 'roadTrip';
   showAlert = false;
 
@@ -34,11 +36,11 @@ export class AdminPanelCellComponent implements OnInit {
 
   postToFirebase() {
     let firebaseValues = {
-      packages: {title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto},
+      packages: {title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto,price:this.price},
       slideshowImages: {imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto},
       posts: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto },
-      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url:  this.urlLink },
-      trips: { title: this.titleValue, message: this.messageValue , imageUrl: this.urlPhoto,type:this.tripType},
+      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url:  this.urlLink,price:this.price },
+      trips: { title: this.titleValue, message: this.messageValue , imageUrl: this.urlPhoto,type:this.tripType,price:this.price},
     }
     
     if (this.pathName) {
@@ -54,6 +56,7 @@ export class AdminPanelCellComponent implements OnInit {
     this.urlPhoto = '';
     this.subtitleValue = '';
     this.messageValue = '';
+    this.price = '';
     this.showAlert = true;
   }
 

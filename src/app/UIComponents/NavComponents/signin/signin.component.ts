@@ -11,10 +11,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./signin.component.css']
 })
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-
 export class SigninComponent implements OnInit {
   userData: any; // Save logged in user data
   dropDownForSignup = false;

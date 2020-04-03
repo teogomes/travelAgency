@@ -14,6 +14,7 @@ span {
 
 .example-card {
     filter: gray; /* IE5+ */
+    height:400px;
     -webkit-transition: all .4s ease-in-out; 
 }
 
@@ -28,3 +29,41 @@ span {
   -webkit-transform: scale(1.15,1.15);
 }
   
+.card-image {
+  width: 100%;
+  height:200px;
+}
+
+
+.priceTag{
+  position: relative;
+  left: 0px;
+  bottom: 50px;
+  height: 35px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  width: 15%;
+  filter: none;
+  -webkit-filter: grayscale(0);
+  background-color: teal;
+}
+
+h4 {
+  color: white;
+  font-size: 20px;
+}
+
+.readMoreDiv{ 
+  position: absolute;
+  width: 25%;
+  height: 40px;
+  right: 0;
+  bottom: 0;
+  background-color: #AF0808;
+  border-top-left-radius: 6px;
+}
+
+h3 {
+  color:white;
+  size: 18px;
+}
