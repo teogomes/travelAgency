@@ -28,3 +28,19 @@ export interface FirebaseUser {
      displayName: string;
      role: string;
 }
+
+export interface SlideshowImage {
+     imageUrl: string,
+     urlLink: string,
+}
+
+export interface TravelPackage { 
+     ID: string,
+     imageUrl: string,
+     title:string,
+     message:string,
+     subtitle:string,
+     price:string,
+     minAge:number,
+     maxAge:number
+}

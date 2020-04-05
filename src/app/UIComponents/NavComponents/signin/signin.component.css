@@ -1,6 +1,6 @@
 
   .dropdown {
-    width: 100px;
+    width: 250px;
     position: absolute;
     top: 0;
     right:15px;
@@ -13,11 +13,16 @@
     font-size: large;
   }
 
+  h3{
+    margin-right: 15px;
+  }
+
   .dropdown-toggle {
     position: absolute;
+    right: 0;
     border-radius: 5px;
     height: 50%;
-    width: 100px;
+    width: 80px;
     top: 25%;
     text-align: center;
     color:white;
@@ -25,9 +30,10 @@
 
   .logoutBtn {
     position: absolute;
+    right: 0;
     border-radius: 5px;
     height: 50%;
-    width: 100px;
+    width: 50%;
     top: 25%;
     text-align: center;
     background-color:#AF0808;
@@ -42,8 +48,8 @@
     overflow:hidden;
     background-color:rgba(255,255,255,1);
     border-radius: 5px;
-    right: 150px;
-    left: -150px;
+    right: 0px;
+    left: -50px;
   }
 
   #login-dp .help-block{
@@ -58,6 +64,10 @@
   
   #login-dp .form-group {
     margin-bottom: 10px;
+  }
+
+  .dropdown-menu{
+    /* right: 0; */
   }
 
 

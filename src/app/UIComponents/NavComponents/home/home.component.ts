@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
 import { Observable } from 'rxjs';
+import { SlideshowImage, TravelPackage } from 'src/app/Models';
 
-interface SlideshowImage {
-  imageUrl:String,
-  urlLink:String,
 
-}
 
 @Component({
   selector: 'app-home',
@@ -38,23 +35,49 @@ export class HomeComponent implements OnInit {
   width: string = '100%';
   enableZoom: boolean = false;
   enablePan: boolean = false;
-  items: Observable<any[]>;
+  items: TravelPackage[] = [];
   imageUrls: String[];
   slideshowImages: Observable<any[]>;
-  
+  itemsSub: any;
+  slideshowSub: any;
+
 
   ngOnInit() {
 
   }
 
   constructor(public db: AngularFireDatabase) {
-    this.items = db.list('items').valueChanges();
-    db.list('slideshowImages').valueChanges().subscribe((res : SlideshowImage[]) => {
+    const firebaseUser = JSON.parse(localStorage.getItem('firebaseUser'));
+    
+    this.itemsSub = db.list('items').valueChanges().subscribe((res: TravelPackage[]) => {
+      
+      // this.items = res
+      this.items = res.filter((travelPackage:TravelPackage) => {
+        if (firebaseUser) {
+          return this.showPackage(firebaseUser.age || 18, travelPackage)
+        }
+        return true
+      })
+    })
+
+
+
+    this.slideshowSub = db.list('slideshowImages').valueChanges().subscribe((res: SlideshowImage[]) => {
       this.imageUrls = []
       res.map((image) => {
         this.imageUrls.push(image.imageUrl)
       })
     })
+  }
+
+  showPackage(userAge: number, travelPackage:TravelPackage):boolean {
+    return userAge >= travelPackage.minAge && userAge <= travelPackage.maxAge 
+  }
+
+
+  ngOnDestroy() {
+    this.itemsSub.unsubscribe()
+    this.slideshowSub.unsubscribe()
   }
 
 }

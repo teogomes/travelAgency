@@ -2,7 +2,7 @@ import { Component, OnInit ,  } from '@angular/core';
 import { ActivatedRoute , Router} from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
-import { TripData } from 'src/app/user';
+import { TripData } from 'src/app/Models';
 
 
 @Component({
@@ -48,6 +48,6 @@ export class TripsComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    // this.sub2.unsubscribe();
+    this.sub2.unsubscribe();
   }
 }

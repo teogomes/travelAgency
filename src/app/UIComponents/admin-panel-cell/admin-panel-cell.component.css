@@ -12,6 +12,10 @@ span {
     font-weight:600;
 }
 
+input{
+    margin-top: 4px;
+}
+
 
 .componentCard {
     border-radius: 5px;

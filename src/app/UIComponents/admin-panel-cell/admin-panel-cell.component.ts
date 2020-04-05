@@ -16,6 +16,7 @@ export class AdminPanelCellComponent implements OnInit {
   @Input() tripTypes: [string];
   @Input() cardTitle: string;
   @Input() showPriceInput: boolean;
+  @Input() showAgeInput: boolean;
 
   titleValue = '';
   subtitleValue = '';
@@ -25,6 +26,8 @@ export class AdminPanelCellComponent implements OnInit {
   price = '';
   tripType = 'roadTrip';
   showAlert = false;
+  minAge = '18';
+  maxAge = '100';
 
   items: Observable<any[]>;
 
@@ -34,15 +37,16 @@ export class AdminPanelCellComponent implements OnInit {
     this.items = this.db.list(this.pathName).valueChanges();
   }
 
+
   postToFirebase() {
     let firebaseValues = {
-      packages: {title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto,price:this.price},
-      slideshowImages: {imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto},
+      packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge },
+      slideshowImages: { imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto },
       posts: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto },
-      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url:  this.urlLink,price:this.price },
-      trips: { title: this.titleValue, message: this.messageValue , imageUrl: this.urlPhoto,type:this.tripType,price:this.price},
+      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url: this.urlLink, price: this.price },
+      trips: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, type: this.tripType, price: this.price },
     }
-    
+
     if (this.pathName) {
       this.db.list(this.pathName).push(firebaseValues[this.key]).then((res) => {
         this.db.object(`${this.pathName}/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
@@ -58,6 +62,8 @@ export class AdminPanelCellComponent implements OnInit {
     this.messageValue = '';
     this.price = '';
     this.showAlert = true;
+    this.minAge = '18';
+    this.maxAge = '100';
   }
 
   removeItem(item: any) { this.db.object(`${this.pathName}/${item.ID}`).remove() }

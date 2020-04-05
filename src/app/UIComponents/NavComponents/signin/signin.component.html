@@ -1,6 +1,6 @@
 <!-- Login / Register -->
-<div ngbDropdown class="dropdown">
-  <h1>{{userDisplayName}}</h1>
+<div ngbDropdown class="dropdown align-items-center d-flex flex-row">
+  <h3 *ngIf='userDisplayName && isLoggedIn() '>Welcome {{userDisplayName}}</h3>
   <a href="#" *ngIf='isLoggedIn()' (click)='SignOut()' class="logoutBtn"><b>Logout</b></a>
   <a href="#" *ngIf='!isLoggedIn()' ngbDropdownToggle class="dropdown-toggle bg-dark "><b>Login</b></a>
   <ul ngbDropdownMenu id="login-dp" class="dropdown-menu">
@@ -20,6 +20,7 @@
         <label for="nameInput">More information</label>
         <label class="sr-only" for="nameInput">Name</label>
         <input type="text" class="form-control " id="nameInput" [(ngModel)]="name" name='displayName' placeholder="Name" required>
+        <input type="number" class="form-control mt-3 " id="ageInput" [(ngModel)]="ageValue" name='ageValue' placeholder="Age" required>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block " (click)="dropDownForSignup ? SignUp() : SignIn()"

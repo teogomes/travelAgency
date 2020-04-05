@@ -1,6 +1,6 @@
 import 'firebase/firestore';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { User, FirebaseUser } from "../../../user";
+import { User, FirebaseUser } from "../../../Models";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -19,15 +19,19 @@ export class SigninComponent implements OnInit {
   password = ''
   name = ''
   userDisplayName = ''
-  userAge = 18;
+  ageValue = '';
 
   constructor(
     private firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore, // Inject Firebase auth service,
     public db: AngularFireDatabase
   ) {
-    db.list('users').valueChanges().subscribe((res:FirebaseUser[]) => {
+    db.list('users').valueChanges().subscribe((res: FirebaseUser[]) => {
       this.users = res
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user != null) {
+        this.SearchDatabaseFor(user)
+      }
     })
     this.firebaseAuth.authState.subscribe(user => {
       if (user) {
@@ -42,8 +46,7 @@ export class SigninComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   toggleSignMethod() {
     this.dropDownForSignup = !this.dropDownForSignup
@@ -66,24 +69,27 @@ export class SigninComponent implements OnInit {
     return this.firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
       .then((result) => {
         window.alert("userCreated")
-        this.AddUserToDatabase(result.user)        
+        this.AddUserToDatabase(result.user)
       }).catch((error) => {
         window.alert(error.message)
       })
   }
 
-  AddUserToDatabase(user:firebase.User) {
-    this.db.list('users').push({uid:user.uid , displayName:this.name,role:'user',email:user.email}).then((res) => {
+  AddUserToDatabase(user: firebase.User) {
+    this.db.list('users').push({ uid: user.uid, displayName: this.name, role: 'user', email: user.email, age: this.ageValue }).then((res) => {
       this.db.object(`users/${res['path'].pieces_[1]}`).update({ ID: res['path'].pieces_[1] });
     })
     this.SetUserData(user);
   }
-  
-  SearchDatabaseFor(user:firebase.User) {
+
+  SearchDatabaseFor(user: firebase.User) {
     var currentUser = this.users.find((firebaseUser) => {
       return firebaseUser.uid == user.uid
     })
-    debugger
+    if (currentUser) {
+      this.userDisplayName = currentUser.displayName
+      localStorage.setItem('firebaseUser', JSON.stringify(currentUser));
+    }
   }
 
 
@@ -98,8 +104,10 @@ export class SigninComponent implements OnInit {
   }
 
   SignOut() {
+    location.reload();
     return this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('firebaseUser');
     })
   }
 
@@ -110,6 +118,7 @@ export class SigninComponent implements OnInit {
   }
 
   SetUserData(user) {
+    location.reload();
     const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -118,9 +127,17 @@ export class SigninComponent implements OnInit {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
+    this.resetInputs()
     return userRef.set(userData, {
       merge: true
     })
+  }
+
+  resetInputs() {
+    this.email = ''
+    this.password = ''
+    this.name = ''
+    this.ageValue = '';
   }
 
 }
