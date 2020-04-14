@@ -4,6 +4,7 @@ import { User, FirebaseUser } from "../../../Models";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +15,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class SigninComponent implements OnInit {
   userData: any; // Save logged in user data
   dropDownForSignup = false;
+  forgotPassword = false 
   users: FirebaseUser[];
   email = ''
   password = ''
@@ -53,6 +55,21 @@ export class SigninComponent implements OnInit {
   }
 
   //Firebase 
+
+  // Sign in with Facebook
+  FacebookAuth() {
+    return this.AuthLogin(new auth.FacebookAuthProvider());
+  }  
+
+  AuthLogin(provider) {
+    return this.firebaseAuth.signInWithPopup(provider)
+    .then((result) => {
+      this.SearchDatabaseFor(result.user)
+      this.SetUserData(result.user);
+    }).catch((error) => {
+        console.log(error)
+    })
+  }
 
   SignIn() {
     return this.firebaseAuth.signInWithEmailAndPassword(this.email, this.password)
@@ -131,6 +148,15 @@ export class SigninComponent implements OnInit {
     return userRef.set(userData, {
       merge: true
     })
+  }
+
+
+  resetPassword() {
+    this.firebaseAuth.sendPasswordResetEmail(this.email).then(function() {
+      window.alert("Email sent")
+    }).catch(function(error) {
+      window.alert(error.message)
+    });
   }
 
   resetInputs() {

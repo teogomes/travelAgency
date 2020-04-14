@@ -44,3 +44,13 @@ export interface TravelPackage {
      minAge:number,
      maxAge:number
 }
+
+export interface HotelData { 
+     ID: string,
+     imageUrl: string,
+     title:string,
+     message:string,
+     url:string,
+     destination:string,
+}
+

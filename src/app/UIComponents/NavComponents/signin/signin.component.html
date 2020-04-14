@@ -1,8 +1,10 @@
 <!-- Login / Register -->
 <div ngbDropdown class="dropdown align-items-center d-flex flex-row">
   <h3 *ngIf='userDisplayName && isLoggedIn() '>Welcome {{userDisplayName}}</h3>
-  <a href="#" *ngIf='isLoggedIn()' (click)='SignOut()' class="logoutBtn"><b>Logout</b></a>
-  <a href="#" *ngIf='!isLoggedIn()' ngbDropdownToggle class="dropdown-toggle bg-dark "><b>Login</b></a>
+  <a href="#" *ngIf='isLoggedIn()' (click)='SignOut()'
+    class="logoutBtn  d-flex align-items-center justify-content-center"><b>Logout</b></a>
+  <a href="#" *ngIf='!isLoggedIn()' ngbDropdownToggle
+    class="dropdown-toggle bg-dark d-flex align-items-center justify-content-center"><b>Login</b></a>
   <ul ngbDropdownMenu id="login-dp" class="dropdown-menu">
     <form class="form" id="login-nav">
       <div class="form-group">
@@ -11,26 +13,39 @@
           placeholder="Email address" required>
       </div>
       <div class="form-group">
-        <label class="sr-only" for="exampleInputPassword2">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword2" [(ngModel)]="password" name='password'
-          placeholder="Password" required autocomplete="on">
-        <div *ngIf='!dropDownForSignup' class="help-block text-right"><a href="">Forget the password ?</a></div>
+        <label *ngIf='!forgotPassword' class="sr-only" for="exampleInputPassword2">Password</label>
+        <input *ngIf='!forgotPassword' type="password" class="form-control" id="exampleInputPassword2"
+          [(ngModel)]="password" name='password' placeholder="Password" required autocomplete="on">
+        <div *ngIf='!dropDownForSignup' class="help-block text-right"><a (click)="forgotPassword = !forgotPassword"
+            style='color:blue'>{{!forgotPassword ? "Forget the password ?" : "Login" }}</a></div>
       </div>
       <div *ngIf='dropDownForSignup' class="signUpInfo mt-5 mb-3">
         <label for="nameInput">More information</label>
         <label class="sr-only" for="nameInput">Name</label>
-        <input type="text" class="form-control " id="nameInput" [(ngModel)]="name" name='displayName' placeholder="Name" required>
-        <input type="number" class="form-control mt-3 " id="ageInput" [(ngModel)]="ageValue" name='ageValue' placeholder="Age" required>
+        <input type="text" class="form-control " id="nameInput" [(ngModel)]="name" name='displayName' placeholder="Name"
+          required>
+        <input type="number" class="form-control mt-3 " id="ageInput" [(ngModel)]="ageValue" name='ageValue'
+          placeholder="Age" required>
       </div>
-      <div class="form-group">
+      <div *ngIf='!forgotPassword' class="form-group">
         <button type="submit" class="btn btn-primary btn-block " (click)="dropDownForSignup ? SignUp() : SignIn()"
           [ngStyle]="{'background-color': dropDownForSignup ? 'red' : 'black'}">{{ dropDownForSignup ? "SIGN UP" : "LOGIN"}}</button>
+      </div>
+      <div class="container">
+        <a class="btn btn-lg btn-social btn-facebook" (click)="FacebookAuth()">
+          <i class="fa fa-facebook fa-fw"></i> Sign in with Facebook
+        </a>
+      </div>
+      <div *ngIf='forgotPassword' class="form-group">
+        <button type="submit" class="btn btn-primary btn-block " (click)="resetPassword()"
+          [ngStyle]="{'background-color':'#AF0808'}">Send reset email</button>
       </div>
       <div class="checkbox">
       </div>
     </form>
-    <div  class="bottom text-center">
-     {{!dropDownForSignup ? 'New here ?' :'Old here ?'}}  <a href="#" (click)="toggleSignMethod()"> {{!dropDownForSignup ? 'Join us' :'Login'}}</a>
+    <div class="bottom text-center">
+      {{!dropDownForSignup ? 'New here ?' :'Old here ?'}} <a href="#" (click)="toggleSignMethod()">
+        {{!dropDownForSignup ? 'Join us' :'Login'}}</a>
     </div>
   </ul>
 </div>

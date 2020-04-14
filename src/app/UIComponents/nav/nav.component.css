@@ -1,9 +1,11 @@
-
+.navbar  {
+  background-color: #28497A;
+}
 /* Style the links inside the navigation bar */
  a {
   float: left;
   display: block;
-  color: #333;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -17,14 +19,11 @@
   width: 100%;
 }
 
-.searchButton {
-  float: right;
-}
-
 /* Add an active class to highlight the current page */
 .active {
-  background-color: black;
+  background-color: #AF0808;
   color: white;
+  font-weight: 900;
 }
 
 /* Hide the link that should open and close the topnav on small screens */
@@ -46,6 +45,7 @@
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+  color:white;
 }
 
 
@@ -70,7 +70,7 @@
 
 /* Add a dark background on topnav links and the dropdown button on hover */
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
+  background-color: gray;
   color: white;
 }
 

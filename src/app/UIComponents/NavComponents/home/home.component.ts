@@ -50,8 +50,7 @@ export class HomeComponent implements OnInit {
     const firebaseUser = JSON.parse(localStorage.getItem('firebaseUser'));
     
     this.itemsSub = db.list('items').valueChanges().subscribe((res: TravelPackage[]) => {
-      
-      // this.items = res
+
       this.items = res.filter((travelPackage:TravelPackage) => {
         if (firebaseUser) {
           return this.showPackage(firebaseUser.age || 18, travelPackage)

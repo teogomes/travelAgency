@@ -1,23 +1,22 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light mb-0">
+<nav class="navbar navbar-expand-lg sticky-top mb-03">
   <div class="topnav" id="myTopnav">
-    <a  href="#" routerLink="" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>
-    <a href="#news" routerLink="newsBlog" routerLinkActive="active" >News</a>
+    <a href="#" routerLink="" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Home</a>
+
     <a href="#hotels" routerLink='hotels' routerLinkActive="active">Hotels</a>
-    <div ngbDropdown class="dropdown"  routerLinkActive="active" href="#">
-      <button ngbDropdownToggle class="dropbtn" >Trips</button>
+    <div ngbDropdown class="dropdown" routerLinkActive="active" href="#">
+      <button ngbDropdownToggle class="dropbtn">Trips</button>
       <div ngbDropdownMenu class="dropdown-content">
-        <a ngbDropdownItem [routerLink]="['/trips',{filter:'roadTrip'}]" >Road trips</a>
+        <a ngbDropdownItem [routerLink]="['/trips',{filter:'roadTrip'}]">Road trips</a>
         <a ngbDropdownItem [routerLink]="['/trips',{filter:'airplane'}]">Airplane</a>
         <a ngbDropdownItem [routerLink]="['/trips',{filter:'cruises'}]" href="#">Cruises</a>
-        <a ngbDropdownItem [routerLink]="['/trips',{filter:'daily'}]"  href="#">Daily</a>
+        <a ngbDropdownItem [routerLink]="['/trips',{filter:'daily'}]" href="#">Daily</a>
       </div>
     </div>
     <a href="#booking" routerLink='booking' routerLinkActive="active">Booking</a>
+    <a href="#news" routerLink="newsBlog" routerLinkActive="active">News</a>
     <a href="#contact" routerLink='contact' routerLinkActive="active">Contact</a>
     <a routerLink="about" routerLinkActive="active">About</a>
     <a *ngIf='showAdminPanel()' routerLink="adminPanel" routerLinkActive="active">Admin Panel</a>
-    <a href="javascript:void(0);" class="icon" (click)="addResponsiveClass()">&#9776;</a>
-
     <app-signin *ngIf='showLogin'></app-signin>
   </div>
 </nav>

@@ -1,22 +1,26 @@
 <h1><span>Hotels</span> just for <span>you</span></h1>
 <div class="container-fluid  h-75">
-    <div class="row mt-5 mb-5 justify-content-around">
-        <div *ngFor="let hotel of hotels | async" class="col-xs-12 col-sm-6 col-md-4 my-4">
-            <mat-card [routerLink]="['/detailsPage',hotel]" class="example-card mx-4  ">
+    <form class="form-inline ml-3">
+        <i class="fa fa-search" style='font-size:medium;'></i>
+        <input class="form-control form-control-sm ml-3 searchInput" [(ngModel)]='searchInput' name="filter" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-elegant btn-rounded btn-sm my-0" (click)='searchChanged()' type="submit">Search</button>
+    </form>
+    <div class="row mt-5 mb-5 mx-3 justify-content-start">
+        <div *ngFor="let hotel of hotels" class="col-xs-12 col-sm-6 col-md-4 my-4">
+            <mat-card [routerLink]="['/detailsPage',hotel]" class="example-card mx-3  ">
                 <mat-card-header class='ml-n2'>
                     <mat-card-title>{{hotel.title}}</mat-card-title>
                     <mat-card-subtitle>{{hotel.subtitle}}</mat-card-subtitle>
                 </mat-card-header>
-                <div class='card-image' >
+                <div class='card-image'>
                     <img class='card-image' src="{{hotel.imageUrl}}">
                     <div *ngIf='hotel.price' class="priceTag d-flex justify-content-center align-items-center">
                         <h4>{{hotel.price}} €</h4>
                     </div>
                 </div>
-                <mat-card-content class='ml-2 my-4 '>
-                    <p>
-                        {{hotel.message}}
-                    </p>
+                <mat-card-content class='ml-2 my-4 '
+                    style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    {{hotel.message}}
                 </mat-card-content>
                 <div class='readMoreDiv d-flex justify-content-center align-items-center'>
                     <h3>Read More</h3>

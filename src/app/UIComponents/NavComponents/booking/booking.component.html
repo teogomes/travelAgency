@@ -1,18 +1,28 @@
-<div class="container-fluid bookingContainer">
+<div class="container-fluid bookingContainer mt-n5">
     <div class='container w-75 h-100 float-left'>
         <div class="card col mt-5 ml-md-5 w-50 bookingCard h-75 d-flex flex-column">
-
             <div class='row-md-12'>
                 <h1 class='header'>Book your next trip with us</h1>
                 <h5 class='subtitle'>Travel the world with us and enjoy special perks</h5>
             </div>
+            <div class="book-types mb-5">
+                <input type="radio" name="book-type" value="packet" id="packet"  (change)="segmentChanged('items')" checked />
+                <label for="packet">
+                    Travel packet
+                </label>
 
+                <input type="radio" name="book-type" value="hotel" id="hotel"  (change)="segmentChanged('hotels')" />
+                <label for="hotel">
+                    Hotel
+                </label>
+            </div>
             <div class='row-md-12'>
                 <label for="whereInput">
-                    <h3>Place</h3>
+                    <h3>{{hotelsTab ? 'Hotels' : 'Travel Packets'}} </h3>
                 </label>
-                <input type="text" class="form-control input" id="placeInput" required [(ngModel)]="placeValue"
-                    name="placeInput">
+                <select class="form-control h-50 mb-5" id="personInput" name="packetInput">
+                    <option *ngFor='let packet of items | async' value='packet.title'>{{packet.title}}</option>
+                </select>
             </div>
 
             <div class='row-md-12'>
@@ -63,7 +73,7 @@
             </div>
 
             <div class='row-md-12 bottom-0 mt-auto w-100 justify-content-center d-flex'>
-                <button type='button' class="btn submitButton" (click)= 'findMe()'>Submit</button>
+                <button type='button' class="btn submitButton" (click)='resetFields()'>Submit</button>
             </div>
 
         </div>

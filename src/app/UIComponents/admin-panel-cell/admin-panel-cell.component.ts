@@ -17,6 +17,7 @@ export class AdminPanelCellComponent implements OnInit {
   @Input() cardTitle: string;
   @Input() showPriceInput: boolean;
   @Input() showAgeInput: boolean;
+  @Input() showDestinationInput: boolean;
 
   titleValue = '';
   subtitleValue = '';
@@ -24,6 +25,7 @@ export class AdminPanelCellComponent implements OnInit {
   urlPhoto = '';
   urlLink = '';
   price = '';
+  destinationValue = '';
   tripType = 'roadTrip';
   showAlert = false;
   minAge = '18';
@@ -40,7 +42,7 @@ export class AdminPanelCellComponent implements OnInit {
 
   postToFirebase() {
     let firebaseValues = {
-      packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge },
+      packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge ,destination:this.destinationValue},
       slideshowImages: { imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto },
       posts: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto },
       hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url: this.urlLink, price: this.price },
@@ -61,9 +63,10 @@ export class AdminPanelCellComponent implements OnInit {
     this.subtitleValue = '';
     this.messageValue = '';
     this.price = '';
+    this.destinationValue = '';
     this.showAlert = true;
     this.minAge = '18';
-    this.maxAge = '100';
+    this.maxAge = '100'; 
   }
 
   removeItem(item: any) { this.db.object(`${this.pathName}/${item.ID}`).remove() }

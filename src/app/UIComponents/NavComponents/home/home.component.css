@@ -39,21 +39,30 @@ span {
 
 
 .priceTag{
-  position: relative;
-  left: 0px;
-  bottom: 50px;
+  position: absolute;
+  left: 16px;
+  bottom: 125px;
   height: 35px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  width: 15%;
-  filter: none;
-  -webkit-filter: grayscale(0);
   background-color: teal;
+}
+
+.destinationTag {
+  position: absolute;
+  right: 16px;
+  top: 100px;
+  height: 35px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: moccasin;
 }
 
 h4 {
   color: white;
   font-size: 20px;
+  font-weight: 800;
+  padding: 8px;
 }
 
 .readMoreDiv{ 

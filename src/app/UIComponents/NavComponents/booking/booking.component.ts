@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import 'firebase/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-booking',
@@ -8,24 +11,27 @@ import { Component, OnInit } from '@angular/core';
 export class BookingComponent implements OnInit {
 
   placeValue = '';
-  fromInputDateValue= '';
+  fromInputDateValue = '';
   toInputDateValue = '';
+  items: Observable<any[]>;
+  hotelsTab = false
 
 
-  constructor() { }
+  constructor(public db: AngularFireDatabase) {
+    this.items = db.list('items').valueChanges()
+  }
 
   ngOnInit() {
   }
 
-  findMe() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        debugger
-        alert(`Geolocation is not supported by this browser. ${position}`);
-      });
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
+  segmentChanged(path: string) {
+    this.hotelsTab = path == 'hotels'
+    this.items = this.db.list(path).valueChanges()
+  }
+
+  resetFields() {
+    this.fromInputDateValue = '';
+    this.toInputDateValue = '';
   }
 
 }

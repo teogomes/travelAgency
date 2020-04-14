@@ -13,6 +13,8 @@
                 required [(ngModel)]="urlPhoto" name="urlPhoto">
             <input *ngIf='showPriceInput' type="text" class=" form-control" placeholder="Enter a price..."
                 id="{{ key + '-price'  }}" required [(ngModel)]="price" name="price">
+            <input *ngIf='showDestinationInput' type="text" class=" form-control" placeholder="Enter destination..." id="{{ key + '-destination'  }}"
+                required [(ngModel)]="destinationValue" name="destination">
             <div *ngIf='showAgeInput'>
                 <div class="d-flex justify-content-center my-4">
                     <h4 class=" text-dark mr-2 ">Min Age:</h4>

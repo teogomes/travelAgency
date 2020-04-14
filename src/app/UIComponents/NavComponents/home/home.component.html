@@ -5,23 +5,28 @@
 
 <h1><span>Special</span> vacation packages just for <span>you</span></h1>
 <div class="container-fluid h-75">
-    <div class="row mt-5 mb-5 justify-content-around">
+    <div class="row mt-5 mb-5 justify-content-start">
         <div *ngFor="let travel of items " class="col-xs-12 col-sm-6 col-md-4 my-4">
-            <mat-card [routerLink]="['/detailsPage',travel]" class="example-card mx-4  ">
-                <mat-card-header class='ml-n2'>
-                    <mat-card-title>{{travel.title}}</mat-card-title>
+            <mat-card [routerLink]="['/detailsPage',travel]" class="example-card mx-4 ">
+                <mat-card-header class='ml-n2 w-100'>
+                    <mat-card-title >
+                        {{travel.title}}
+                    </mat-card-title>
                     <mat-card-subtitle>{{travel.subtitle}}</mat-card-subtitle>
                 </mat-card-header>
-                <div class='card-image'>
+                <div class='card-image bg-primary'>
                     <img class='card-image' src="{{travel.imageUrl}}">
                     <div *ngIf='travel.price' class="priceTag d-flex justify-content-center align-items-center">
                         <h4>{{travel.price}} €</h4>
                     </div>
+                    <div *ngIf='travel.destination'
+                        class=" destinationTag d-flex justify-content-center align-items-center">
+                        <h4>{{travel.destination}}</h4>
+                    </div>
                 </div>
-                <mat-card-content class='ml-2 my-4 '>
-                    <p>
-                        {{travel.message}}
-                    </p>
+                <mat-card-content class='ml-2 my-4 '
+                    style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    {{travel.message}}
                 </mat-card-content>
                 <div class='readMoreDiv d-flex justify-content-center align-items-center'>
                     <h3>Read More</h3>
