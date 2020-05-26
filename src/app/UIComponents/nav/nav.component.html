@@ -17,6 +17,7 @@
     <a href="#contact" routerLink='contact' routerLinkActive="active">Contact</a>
     <a routerLink="about" routerLinkActive="active">About</a>
     <a *ngIf='showAdminPanel()' routerLink="adminPanel" routerLinkActive="active">Admin Panel</a>
+    <a href="javascript:void(0);" class="icon" (click)="addResponsiveClass()">&#9776;</a>
     <app-signin *ngIf='showLogin'></app-signin>
   </div>
 </nav>
