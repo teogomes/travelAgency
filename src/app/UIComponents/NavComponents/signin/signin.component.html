@@ -17,7 +17,7 @@
         <input *ngIf='!forgotPassword' type="password" class="form-control" id="exampleInputPassword2"
           [(ngModel)]="password" name='password' placeholder="Password" required autocomplete="on">
         <div *ngIf='!dropDownForSignup' class="help-block text-right"><a (click)="forgotPassword = !forgotPassword"
-            style='color:blue'>{{!forgotPassword ? "Forget the password ?" : "Login" }}</a></div>
+            style='color:blue'>{{!forgotPassword ? "Can't remember the password?" : "Login" }}</a></div>
       </div>
       <div *ngIf='dropDownForSignup' class="signUpInfo mt-5 mb-3">
         <label for="nameInput">More information</label>

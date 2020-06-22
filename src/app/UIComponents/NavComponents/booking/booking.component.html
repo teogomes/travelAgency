@@ -32,8 +32,8 @@
                             <h3>From</h3>
                         </label>
                         <div class="inner-addon right-addon">
-                            <i class="glyphicon glyphicon-calendar"> </i>
-                            <input (click)="fromDate.toggle()" type="text" readonly class="form-control input "
+                            <i class="glyphicon glyphicon-calendar dateinput"> </i>
+                            <input (click)="fromDate.toggle()" type="text" readonly class="form-control input dateinput "
                                 id="fromInputDate" required placeholder="yyyy-mm-dd" ngbDatepicker
                                 #fromDate="ngbDatepicker" [(ngModel)]="fromInputDateValue" name="fromInputDate">
 
@@ -44,8 +44,8 @@
                             <h3>To</h3>
                         </label>
                         <div class="inner-addon right-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                            <input (click)="toDate.toggle()" type="text" readonly class="form-control input "
+                            <i class="glyphicon glyphicon-calendar dateinput"></i>
+                            <input (click)="toDate.toggle()" type="text" readonly class="form-control input dateinput"
                                 id="toInputDate" required placeholder="yyyy-mm-dd" ngbDatepicker #toDate="ngbDatepicker"
                                 [(ngModel)]="toInputDateValue" name="toInputDate">
                         </div>

@@ -25,7 +25,7 @@
                     <h4 class=" text-dark ml-2">{{minAge}}</h4>
                 </div>
                 <div class="d-flex justify-content-center my-4">
-                    <h4 class=" text-dark mr-2 ">Min Age:</h4>
+                    <h4 class=" text-dark mr-2 ">Max Age:</h4>
                     <div class="w-75">
                         <input type="range" class="custom-range" id="{{ key + '-ageMaxRange'}}" min="minAge" max="100"
                             value='100' [(ngModel)]="maxAge" name='maxAge' (input)="maxAge=$event.target.value">
@@ -38,6 +38,7 @@
                 <option value="roadTrip">Road trip</option>
                 <option value="airplane">By airplane</option>
                 <option value="cruises">Cruise</option>
+                <option value="Daily">Daily</option>
             </select>
         </div>
 
