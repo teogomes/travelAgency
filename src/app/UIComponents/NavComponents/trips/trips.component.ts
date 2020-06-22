@@ -1,5 +1,5 @@
-import { Component, OnInit ,  } from '@angular/core';
-import { ActivatedRoute , Router} from '@angular/router';
+import { Component, OnInit, } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import 'firebase/database';
 import { TripData } from 'src/app/Models';
@@ -14,23 +14,35 @@ export class TripsComponent implements OnInit {
   filter: string;
   private sub: any;
   private sub2: any;
+  private sub3: any;
   trips: TripData[] = [];
   filteredTrips: TripData[] = [];
   loaded = false
 
 
-  constructor(private route: ActivatedRoute,private router: Router, public db: AngularFireDatabase) {
-  
+  constructor(private route: ActivatedRoute, private router: Router, public db: AngularFireDatabase) {
+
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-        this.filter = params["filter"]
-        this.filterTrips()
+      this.filter = params["filter"]
+      this.filterTrips()
     })
 
     this.sub2 = this.db.list('trips').valueChanges().subscribe((res: [TripData]) => {
       this.trips = res
+      this.filterTrips()
+    });
+
+    // Taking packages with tripType 
+
+    this.sub3 = this.db.list('items').valueChanges().subscribe((res: [TripData]) => {
+      res.forEach((item): TripData => {
+        if (item.type != null && item.type != "None")
+          this.trips.push(item)
+        return
+      })
       this.filterTrips()
     });
 

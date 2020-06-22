@@ -1,6 +1,6 @@
 <!-- Login / Register -->
-<div ngbDropdown class="dropdown align-items-center d-flex flex-row">
-  <h3 *ngIf='userDisplayName && isLoggedIn() '>Welcome {{userDisplayName}}</h3>
+<div ngbDropdown class="dropdown align-items-center d-flex flex-row justify-content-end">
+  <h3 *ngIf='userDisplayName && isLoggedIn()'>Welcome {{userDisplayName}}</h3>
   <a href="#" *ngIf='isLoggedIn()' (click)='SignOut()'
     class="logoutBtn  d-flex align-items-center justify-content-center"><b>Logout</b></a>
   <a href="#" *ngIf='!isLoggedIn()' ngbDropdownToggle

@@ -2,7 +2,7 @@
 <div class='row justify-content-start' style="padding: 0px 50px;">
     <!-- Form for adding new travel package -->
     <div class='col-12 col-md-6 col-lg-4'>
-        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"' [cardTitle]='"Travel package manager"' [showPriceInput]='true' [showAgeInput] = 'true' [showDestinationInput]='true'>
+        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"' [cardTitle]='"Travel package manager"' [showPriceInput]='true' [showAgeInput] = 'true' [showDestinationInput]='true' [tripTypes]='["None","Road Trip","Airplane","Cruise","Daily"]'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new image to slideShow -->
@@ -23,7 +23,7 @@
     </div>
     <!-- Form for adding new trip -->
     <div class='col-12 col-md-6 col-lg-4'>
-        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"' [tripTypes]='["roadTrip","airplane","cruise","Daily"]'
+        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"' [tripTypes]='["Road Trip","Airplane","Cruise","Daily"]'
             [cardTitle]='"Trips Manager"'>
         </app-admin-panel-cell>
     </div>

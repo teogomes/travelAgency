@@ -26,7 +26,7 @@ export class AdminPanelCellComponent implements OnInit {
   urlLink = '';
   price = '';
   destinationValue = '';
-  tripType = 'roadTrip';
+  tripType = 'Road Trip';
   showAlert = false;
   minAge = '18';
   maxAge = '100';
@@ -42,7 +42,7 @@ export class AdminPanelCellComponent implements OnInit {
 
   postToFirebase() {
     let firebaseValues = {
-      packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge ,destination:this.destinationValue},
+      packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge ,destination:this.destinationValue,type: this.tripType},
       slideshowImages: { imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto },
       posts: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto },
       hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url: this.urlLink, price: this.price },

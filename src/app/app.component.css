@@ -41,3 +41,9 @@
 button:focus {
     outline:none;
 }
+
+.footer {
+  background-color: #28497A;
+}
+
+i{color:white;}

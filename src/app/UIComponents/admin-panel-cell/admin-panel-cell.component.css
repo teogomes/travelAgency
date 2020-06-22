@@ -16,6 +16,11 @@ input{
     margin-top: 4px;
 }
 
+.labelText{
+    width: 40px;
+    margin-left: 10px;
+}
+
 
 .componentCard {
     border-radius: 5px;
