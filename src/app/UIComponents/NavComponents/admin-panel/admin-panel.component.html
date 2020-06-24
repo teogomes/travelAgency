@@ -2,7 +2,9 @@
 <div class='row justify-content-start' style="padding: 0px 50px;">
     <!-- Form for adding new travel package -->
     <div class='col-12 col-md-6 col-lg-4'>
-        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"' [cardTitle]='"Travel package manager"' [showPriceInput]='true' [showAgeInput] = 'true' [showDestinationInput]='true' [tripTypes]='["None","Road Trip","Airplane","Cruise","Daily"]'>
+        <app-admin-panel-cell [key]='"packages"' [pathName]='"items"' [cardTitle]='"Travel package manager"'
+            [showPriceInput]='true' [showAgeInput]='true' [showDestinationInput]='true'
+            [tripTypes]='["None","Road Trip","Airplane","Cruise","Daily"]'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new image to slideShow -->
@@ -18,20 +20,24 @@
     </div>
     <!-- Form for adding new hotel -->
     <div class='col-12 col-md-6 col-lg-4'>
-        <app-admin-panel-cell [key]='"hotels"' [pathName]='"hotels"' [showDestinationInput]='true' [cardTitle]='"Hotels Manager"'>
+        <app-admin-panel-cell [key]='"hotels"' [pathName]='"hotels"' [showDestinationInput]='true'
+            [cardTitle]='"Hotels Manager"'>
         </app-admin-panel-cell>
     </div>
     <!-- Form for adding new trip -->
     <div class='col-12 col-md-6 col-lg-4'>
-        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"' [tripTypes]='["Road Trip","Airplane","Cruise","Daily"]'
-            [cardTitle]='"Trips Manager"'>
+        <app-admin-panel-cell [key]='"trips"' [pathName]='"trips"'
+            [tripTypes]='["Road Trip","Airplane","Cruise","Daily"]' [cardTitle]='"Trips Manager"'>
         </app-admin-panel-cell>
     </div>
 </div>
 <div class='container-fluid secondContainer'>
     <h1>Messages from <span>users</span></h1>
-    <div *ngFor='let message of messages | async' class='well'>
-        <h3><span>Name:</span> {{message.contactFormName}}</h3>
-        <h3><span>Message:</span> {{message.contactFormMessage}}</h3>
+    <div *ngFor='let message of messages | async' class='well d-flex justify-content-between'>
+        <div>
+            <h3><span>Name:</span> {{message.contactFormName}}</h3>
+            <h3><span>Message:</span> {{message.contactFormMessage}}</h3>
+        </div>
+        <button type="button" class="btn btn-warning" (click)='answer(message)'>Answer</button>
     </div>
 </div>
