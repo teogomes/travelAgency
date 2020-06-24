@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
   showAdminPanel(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user)
-      return user.email == 'kosmas@gmail.com' || user.email == 'tptls@hotmail.com'
+      return user.email == 'kosmas@gmail.com' 
     else
       return false
   }
