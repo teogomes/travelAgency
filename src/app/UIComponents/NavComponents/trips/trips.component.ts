@@ -32,20 +32,15 @@ export class TripsComponent implements OnInit {
 
     this.sub2 = this.db.list('trips').valueChanges().subscribe((res: [TripData]) => {
       this.trips = res
-      this.filterTrips()
+      this.sub3 = this.db.list('items').valueChanges().subscribe((res: [TripData]) => {
+        res.forEach((item): TripData => {
+          if (item.type != null && item.type != "None")
+            this.trips.push(item)
+          return
+        })
+        this.filterTrips()
+      });
     });
-
-    // Taking packages with tripType 
-
-    this.sub3 = this.db.list('items').valueChanges().subscribe((res: [TripData]) => {
-      res.forEach((item): TripData => {
-        if (item.type != null && item.type != "None")
-          this.trips.push(item)
-        return
-      })
-      this.filterTrips()
-    });
-
   }
 
   filterTrips() {

@@ -32,6 +32,19 @@ export class BookingComponent implements OnInit {
   resetFields() {
     this.fromInputDateValue = '';
     this.toInputDateValue = '';
+
+    if(!this.isLoggedIn()) { 
+      window.alert("Please first sign in")
+    }else {
+      window.alert("Your booking has been submited")
+    }
+    
+
+  }
+
+  isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null
   }
 
 }

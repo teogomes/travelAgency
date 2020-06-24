@@ -8,13 +8,12 @@ section {
     margin: 0 ;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:whitesmoke; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color:whitesmoke;display:flex; 
+    flex-direction:column;  }
 
-.footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
+footer {
+    background-color: #28497A;
+    margin-top:auto; 
   }
+  
+  i{color:white;}
