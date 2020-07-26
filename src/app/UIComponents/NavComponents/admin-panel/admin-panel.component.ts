@@ -21,7 +21,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   answer(item: any) {
-
     let message = "Hello " + item.contactFormName + ".Thank you for your email "
       window.open("mailto:"+ item.contactFormEmail + "?subject=" + "Reply to your message:: " + item.contactFormMessage +"&body="+ message ,"_self");
   

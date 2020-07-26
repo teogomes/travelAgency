@@ -33,7 +33,7 @@ export class HotelsComponent implements OnInit {
       }
       return true
     })
-    
+    debugger
   }
 
 }

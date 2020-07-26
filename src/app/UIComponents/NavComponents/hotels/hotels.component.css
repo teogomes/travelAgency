@@ -73,6 +73,7 @@ h3 {
 .searchInput{
   width: 300px;
   height: 30px;
+  font-size: large;
 }
 
 .btn{

@@ -5,6 +5,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -26,7 +27,8 @@ export class SigninComponent implements OnInit {
   constructor(
     private firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore, // Inject Firebase auth service,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    private router:Router
   ) {
     db.list('users').valueChanges().subscribe((res: FirebaseUser[]) => {
       this.users = res
@@ -121,7 +123,8 @@ export class SigninComponent implements OnInit {
   }
 
   SignOut() {
-    location.reload();
+    // location.reload();
+    this.router.navigate(['']) 
     return this.firebaseAuth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('firebaseUser');

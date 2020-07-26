@@ -1,7 +1,7 @@
 <h1><span>Hotels</span> just for <span>you</span></h1>
 <div class="container-fluid  h-75">
     <form class="form-inline ml-3">
-        <i class="fa fa-search" style='font-size:x-large;'></i>
+        <i class="fa fa-search" style='font-size:x-large;color: #000;margin-left: 24px;'></i>
         <input class="form-control form-control-sm ml-3 searchInput" [(ngModel)]='searchInput' name="filter" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-elegant btn-rounded btn-sm my-0" (click)='searchChanged()' type="submit">Search</button>
     </form>
@@ -25,10 +25,6 @@
                 <div class='readMoreDiv d-flex justify-content-center align-items-center'>
                     <h3>Read More</h3>
                 </div>
-                <!-- <mat-card-actions class='ml-2 my-5'>
-                    <button mat-button (click)='myFunction()'>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions> -->
             </mat-card>
         </div>
     </div>

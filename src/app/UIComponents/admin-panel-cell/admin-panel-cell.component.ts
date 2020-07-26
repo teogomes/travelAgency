@@ -45,7 +45,7 @@ export class AdminPanelCellComponent implements OnInit {
       packages: { title: this.titleValue, subtitle: this.subtitleValue, message: this.messageValue, imageUrl: this.urlPhoto, price: this.price, minAge: this.minAge, maxAge: this.maxAge ,destination:this.destinationValue,type: this.tripType},
       slideshowImages: { imageUrl: this.urlPhoto, urlLink: this.urlLink, titlePhoto: this.urlPhoto },
       posts: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto },
-      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url: this.urlLink, price: this.price },
+      hotels: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, url: this.urlLink, price: this.price,destination:this.destinationValue },
       trips: { title: this.titleValue, message: this.messageValue, imageUrl: this.urlPhoto, type: this.tripType, price: this.price },
     }
 
