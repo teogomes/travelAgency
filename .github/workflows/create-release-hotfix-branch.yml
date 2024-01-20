@@ -1,0 +1,80 @@
+
+name: Create Release/Hotfix branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      hotfix_release:
+         description: 'Hotfix or Release branch'
+         type: choice
+         options:
+          - hotfix
+          - release
+         required: true
+         default: 'release'
+      version_number:
+        description: 'The version number in the format X.Y.Z you want to use'
+        required: true
+        type: string
+
+env:
+  release-version: ${{ version_number }}
+  build-number: ${{ version_number }}.0
+  info-plist-path: 'VodafoneCU2/My CU/Info.plist'
+  widget-info-plist-path: 'VodafoneCU2/MyCUWidget/Info.plist'
+  push-info-plist-path: 'VodafoneCU2/vodafone.VodafoneCU.ua.PushServiceExtention/Info.plist'
+
+jobs:
+  create-branch:
+    runs-on: macos-14
+
+    steps: 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Create Release/Hotfix Branch
+        run: |
+          git checkout -b ${{ github.event.inputs.hotfix_release }}/${{ env.release-version }}
+
+      - name: Update version for main                    
+        uses: damienaicheh/update-ios-version-info-plist-action@v1.1.0
+        with:
+          info-plist-path: ${{ env.info-plist-path }}
+          bundle-short-version-string:  ${{ env.release-version }}
+          bundle-version: ${{ env.build-number }}
+
+      - name: Update version for widget                    
+        uses: damienaicheh/update-ios-version-info-plist-action@v1.1.0
+        with:
+          info-plist-path: ${{ env.widget-info-plist-path }}
+          bundle-short-version-string:  ${{ env.release-version }}
+          bundle-version: ${{ env.build-number }}
+
+      - name: Update version for push service                    
+        uses: damienaicheh/update-ios-version-info-plist-action@v1.1.0
+        with:
+          info-plist-path:  ${{ env.push-info-plist-path }}
+          bundle-short-version-string:  ${{ env.release-version }}
+          bundle-version: ${{ env.build-number }}
+
+      - name: Push new branch
+        run: |
+          git add ${{ env.info-plist-path }}
+          git add ${{ env.widget-info-plist-path }}
+          git add ${{ env.push-info-plist-path }}
+
+          git commit --author="Azure Devops <grfunc.ios@vodafone.com>" -m "Bump version to ${RELEASE_VERSION}"
+
+          git push -u origin ${{ parameters.Hotfix_Release }}/${RELEASE_VERSION}
+          git tag -a Testflight/${RELEASE_VERSION}/${BUILD_NUMBER} -m "${RELEASE_VERSION}"
+        
+          git push origin Testflight/${RELEASE_VERSION}/${BUILD_NUMBER}
+         
+        
+      
+            
+        
+
+        
+
+        
