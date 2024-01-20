@@ -1,0 +1,33 @@
+name: Merge Release/Hotfix Branch
+
+on: 
+ workflow_dispatch:
+
+jobs:
+  merge-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set and cache global credentials
+        run: |
+          set -e
+          git config --replace-all --global credential.helper "cache --timeout=3600"
+          git config --global push.default simple
+          git config --global user.email "tptls@hotmail.com"
+          git config --global user.name "Github actions"
+
+      - name: Checkout release branch
+        run: |
+          set -e  
+          sourceBranch=$(Build.SourceBranch)
+          search_string="refs/heads/"
+          replace_string=""
+          branch=${sourceBranch/$search_string/$replace_string}
+          echo $branch
+          git checkout $branch
+          git fetch --all --prune
+          git status
+          git rev-parse --is-inside-work-tree
+          git pull origin $branch
