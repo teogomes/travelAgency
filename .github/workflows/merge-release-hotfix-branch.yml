@@ -1,0 +1,45 @@
+name: Merge Release/Hotfix Branch
+
+on: 
+ workflow_dispatch:
+
+jobs:
+  merge-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set and cache global credentials
+        run: |
+          set -e
+          git config --replace-all --global credential.helper "cache --timeout=3600"
+          git config --global push.default simple
+          git config --global user.email "tptls@hotmail.com"
+          git config --global user.name "Github actions"
+          git fetch --all
+
+      - name: Extract Branch Name
+        id: set_branch
+        run: |
+          full_branch_name="${GITHUB_REF}"
+          stripped_branch_name="${full_branch_name#refs/heads/}"
+          echo "BRANCH_NAME=${stripped_branch_name}" >> $GITHUB_ENV
+
+      - name: Merge Release to Master
+        run: |
+          set -e
+          echo "Merging ${BRANCH_NAME} to master"
+          git checkout master
+          git pull origin master
+          git merge "${BRANCH_NAME}" --no-ff
+          git push origin master
+
+      - name: Merge Release to Develop
+        run: |
+          set -e
+          echo "Merging ${BRANCH_NAME} to develop"
+          git checkout develop
+          git pull origin develop
+          git merge "${BRANCH_NAME}" --no-ff
+          git push origin develop
