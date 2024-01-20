@@ -17,6 +17,7 @@ jobs:
           git config --global push.default simple
           git config --global user.email "tptls@hotmail.com"
           git config --global user.name "Github actions"
+          git fetch --all
 
       - name: Extract Branch Name
         id: set_branch
