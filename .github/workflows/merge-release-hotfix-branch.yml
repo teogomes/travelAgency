@@ -32,6 +32,7 @@ jobs:
           git checkout master
           git pull origin master
           git merge "${BRANCH_NAME}" --no-ff
+          git log --oneline --graph -n 5
           version=$(echo ${BRANCH_NAME}|sed 's:.*/::')
           git tag -a $version -m "$version"
           git push origin $version         
