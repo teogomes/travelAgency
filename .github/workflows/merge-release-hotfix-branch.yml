@@ -18,26 +18,27 @@ jobs:
           git config --global user.email "tptls@hotmail.com"
           git config --global user.name "Github actions"
 
-      - name: Set Branch Name
+      - name: Extract Branch Name
         id: set_branch
-        run: echo "::set-output name=branch::$(echo "${GITHUB_REF#refs/heads/}")"
-
-      - name: Merge Release to Develop
         run: |
-          set -e
-          branch=${{ steps.set_branch.outputs.branch }}
-          echo "Merging ${branch} to develop"
-          git checkout develop
-          git pull origin develop
-          git merge "${branch}" --no-ff
-          git push origin develop
+          full_branch_name="${GITHUB_REF}"
+          stripped_branch_name="${full_branch_name#refs/heads/}"
+          echo "BRANCH_NAME=${stripped_branch_name}" >> $GITHUB_ENV
 
       - name: Merge Release to Master
         run: |
           set -e
-          branch=${{ steps.set_branch.outputs.branch }}
-          echo "Merging ${branch} to master"
+          echo "Merging ${BRANCH_NAME} to master"
           git checkout master
           git pull origin master
-          git merge "${branch}" --no-ff
+          git merge "${BRANCH_NAME}" --no-ff
           git push origin master
+
+      - name: Merge Release to Develop
+        run: |
+          set -e
+          echo "Merging ${BRANCH_NAME} to develop"
+          git checkout develop
+          git pull origin develop
+          git merge "${BRANCH_NAME}" --no-ff
+          git push origin develop
