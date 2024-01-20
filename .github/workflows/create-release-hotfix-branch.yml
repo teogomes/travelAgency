@@ -59,6 +59,8 @@ jobs:
 
       - name: Push new branch
         run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           # git add ${{ env.info-plist-path }}
           # git add ${{ env.widget-info-plist-path }}
           # git add ${{ env.push-info-plist-path }}
