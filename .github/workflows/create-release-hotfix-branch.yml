@@ -18,8 +18,8 @@ on:
         type: string
 
 env:
-  release-version: ${{ version_number }}
-  build-number: ${{ version_number }}.0
+  release-version: ${{ github.event.inputs.version_number }}
+  build-number: ${{ github.event.inputs.version_number }}.0
   info-plist-path: 'VodafoneCU2/My CU/Info.plist'
   widget-info-plist-path: 'VodafoneCU2/MyCUWidget/Info.plist'
   push-info-plist-path: 'VodafoneCU2/vodafone.VodafoneCU.ua.PushServiceExtention/Info.plist'
