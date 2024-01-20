@@ -2,6 +2,11 @@ name: Merge Release/Hotfix Branch
 
 on: 
  workflow_dispatch:
+  inputs:
+       selected_branch:
+         description: 'The branch to merge'
+         required: true
+         type: string
 
 jobs:
   merge-branches:
@@ -18,16 +23,22 @@ jobs:
           git config --global user.email "tptls@hotmail.com"
           git config --global user.name "Github actions"
 
-      - name: Checkout release branch
+      - name: Merge Release to Develop
         run: |
-          set -e  
-          sourceBranch=$(Build.SourceBranch)
-          search_string="refs/heads/"
-          replace_string=""
-          branch=${sourceBranch/$search_string/$replace_string}
-          echo $branch
-          git checkout $branch
-          git fetch --all --prune
-          git status
-          git rev-parse --is-inside-work-tree
-          git pull origin $branch
+          set -e
+          branch=${{ github.event.inputs.selected_branch }}
+          echo "Merging ${branch} to develop"
+          git checkout develop
+          git pull origin develop
+          git merge "${branch}" --no-ff
+          git push origin develop
+
+      - name: Merge Release to Master
+        run: |
+          set -e
+          branch=${{ github.event.inputs.selected_branch }}
+          echo "Merging ${branch} to master"
+          git checkout master
+          git pull origin master
+          git merge "${branch}" --no-ff
+          git push origin master
