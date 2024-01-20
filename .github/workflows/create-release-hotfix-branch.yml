@@ -65,9 +65,9 @@ jobs:
           # git add ${{ env.widget-info-plist-path }}
           # git add ${{ env.push-info-plist-path }}
 
-          # git commit --author="Azure Devops <tptls>" -m "Bump version to ${RELEASE_VERSION}"
+          # git commit --author="Azure Devops <tptls>" -m "Bump version to ${{ env.release-version }"
 
-           git push -u origin "${{ github.event.inputs.hotfix_release }}/${RELEASE_VERSION}"
+           git push -u origin "${{ github.event.inputs.hotfix_release }}/${{ env.release-version }
            git tag -a "Testflight/${{ env.release-version }}/${{ env.build-number }}" -m "${{ env.release-version }}"
 
 
