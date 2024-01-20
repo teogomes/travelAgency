@@ -28,11 +28,13 @@ jobs:
 
       - name: Merge Release to Master
         run: |
-          set -e
           echo "Merging ${BRANCH_NAME} to master"
           git checkout master
           git pull origin master
           git merge "${BRANCH_NAME}" --no-ff
+          version=$(echo ${BRANCH_NAME}|sed 's:.*/::')
+          git tag -a $version -m "$version"
+          git push origin $version         
           git push origin master
 
       - name: Merge Release to Develop
