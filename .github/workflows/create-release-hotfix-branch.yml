@@ -67,7 +67,7 @@ jobs:
 
           # git commit --author="Azure Devops <tptls>" -m "Bump version to ${{ env.release-version }"
 
-           git push -u origin "${{ github.event.inputs.hotfix_release }}/${{ env.release-version }
+           git push -u origin "${{ github.event.inputs.hotfix_release }}/${{ env.release-version }}
            git tag -a "Testflight/${{ env.release-version }}/${{ env.build-number }}" -m "${{ env.release-version }}"
 
 
