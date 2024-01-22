@@ -25,6 +25,16 @@ jobs:
           stripped_branch_name="${full_branch_name#refs/heads/}"
           echo "BRANCH_NAME=${stripped_branch_name}" >> $GITHUB_ENV
 
+      - name: Check if Branch Starts with Release or Hotfix
+        run: |
+          branch_name="${BRANCH_NAME}"
+          if [[ "$branch_name" =~ ^(release|hotfix) ]]; then
+            echo "Branch starts with 'release' or 'hotfix'."
+          else
+            echo "Branch does not start with 'release' or 'hotfix'."
+            exit 1  # You might want to fail the workflow if the condition is not met.
+          fi
+
       - name: Checkout release branch
         run: |
          git fetch --all
